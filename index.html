@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Beauty Shop - Home</title>
+    <style>
+      /* General */
+      body {
+        margin: 0;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        color: #333;
+        background-color: #fcfcfc;
+      }
+
+      /* Header */
+      header {
+        background-color: #ffccd5;
+        padding: 20px 10px;
+        text-align: center;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      header h1 {
+        color: #fff;
+        font-size: 2.5rem;
+        margin: 0;
+      }
+
+      nav ul {
+        display: flex;
+        justify-content: center;
+        list-style: none;
+        padding: 0;
+        margin: 10px 0 0 0;
+      }
+
+      nav ul li {
+        margin: 0 15px;
+      }
+
+      nav ul li a {
+        text-decoration: none;
+        color: #fff;
+        font-weight: bold;
+      }
+
+      nav ul li a:hover {
+        text-decoration: underline;
+      }
+
+      /* Hero */
+      /*TODO: Me ndrru foton ose background per tekst???*/
+      .hero {
+        text-align: center;
+        background-image: url("/img/hero.webp");
+        background-size: contain;
+        width: 100%;
+        background-position: center;
+        color: #fff;
+        padding: 60px 10px;
+      }
+
+      .hero h2 {
+        font-size: 2rem;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+      }
+
+      .hero button {
+        margin-top: 20px;
+        padding: 10px 20px;
+        font-size: 1rem;
+        color: #fff;
+        background-color: #ff6699;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .hero button:hover {
+        background-color: #e60073;
+      }
+
+      /* Categories */
+      .categories {
+        padding: 40px 20px;
+        text-align: center;
+      }
+
+      .categories h2 {
+        color: #ff6699;
+        margin-bottom: 20px;
+      }
+
+      .categories ul {
+        display: flex;
+        justify-content: center;
+        list-style: none;
+        padding: 0;
+      }
+
+      .categories ul li {
+        margin: 0 15px;
+      }
+
+      .categories ul li img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        border: 3px solid #ffccd5;
+      }
+
+      .categories ul li p {
+        margin-top: 10px;
+        color: #333;
+      }
+
+      .products {
+        padding: 40px 20px;
+        text-align: center;
+      }
+
+      .products h2 {
+        color: #ff6699;
+        margin-bottom: 20px;
+      }
+
+      .product-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        padding: 0;
+        margin: 0;
+      }
+
+      .product-card {
+        background: #fff;
+        border: 1px solid #ffccd5;
+        border-radius: 8px;
+        width: 350px;
+        height: 350px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
+        margin: auto;
+      }
+
+      .image-container {
+        position: relative;
+        width: auto;
+        max-height: min-content;
+        padding: 10px;
+        max-height: 200px;
+        min-width: 100%;
+        height: auto;
+        overflow: hidden;
+      }
+
+      .image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+      }
+
+      .image-container:hover img {
+        transform: scale(1.1);
+      }
+
+      .wishlist-btn {
+        position: absolute;
+        top: 10px;
+        right: 30px;
+        background: #fff;
+        border: 1px solid #ff6699;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        font-size: 1.2rem;
+        color: #ff6699;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: background 0.3s ease, color 0.3s ease;
+      }
+
+      .wishlist-btn:hover {
+        background: #ff6699;
+        color: #fff;
+      }
+
+      .product-card h3 {
+        font-size: 1.1rem;
+        color: #333;
+        margin: 10px 0 5px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .product-card p {
+        font-size: 0.9rem;
+        color: #555;
+        margin: 0 0 10px;
+      }
+
+      .add-to-cart-btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+        color: #fff;
+        background-color: #ff6699;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+
+      .add-to-cart-btn:hover {
+        background-color: #e60073;
+      } 
+
+      footer {
+        background-color: #ffccd5;
+        padding: 20px;
+        text-align: center;
+        color: #fff;
+      }
+
+      footer a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      footer a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Header -->
+    <header>
+      <nav>
+        <!--TODO: me i bo me ni rresht-->
+        <h1>Beauty shop</h1>
+        <ul>
+          <li><a href="#products">Produktet</a></li>
+          <li><a href="#categories">Kategoritë</a></li>
+          <li><a href="#contact">Kontakti</a></li>
+          <li><a href="#about">Rreth nesh</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+      <h2>Mirë se erdhët 🩷</h2>
+      <p>Ndalesa juaj e parë për produktet më të reja.</p>
+      <button>Blej tani</button>
+      <!--TODO: Me scroll te produktet me te shitura?-->
+    </section>
+
+    <!-- Categories -->
+    <section class="categories" id="categories">
+      <h2>Çfarë ne ofrojmë</h2>
+      <ul>
+        <li>
+          <img
+            src="/img/skincare.jpeg"
+            alt="Skincare"
+            onclick="scrollToSection('skincare')"
+          />
+          <p>Skincare</p>
+        </li>
+        <li>
+          <img
+            src="/img/makeup.webp"
+            alt="Makeup"
+            onclick="scrollToSection('makeup')"
+          />
+          <p>Makeup</p>
+        </li>
+        <li>
+          <img
+            src="/img/bodycare.avif"
+            alt="Body Care"
+            onclick="scrollToSection('bodycare')"
+          />
+          <p>Bodycare</p>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Products -->
+    <section class="products" id="products">
+      <h2>Produktet më të shitura</h2>
+      <div class="product-grid">
+        <div
+          class="product-card"
+          onclick="goToProductPage('Natural Glow')"
+        >
+          <div class="image-container">
+            <img src="/img/1-Natural-Glow.jpg" alt="natural-glow" />
+            <button class="wishlist-btn" title="Shto në listën e dëshirave">
+              &#9825;
+            </button>
+          </div>
+          <h3>Natural Glow</h3>
+          <p>10.50€</p>
+          <button class="add-to-cart-btn">Shto në shportë</button>
+        </div>
+
+        <div
+          class="product-card"
+          onclick="goToProductPage('Golden glow')"
+        >
+          <div class="image-container">
+            <img src="/img/10-Golden-Glow.jpg" alt="golden-glow" />
+            <button class="wishlist-btn" title="Shto në listën e dëshirave">
+              &#9825;
+            </button>
+          </div>
+          <h3>Golden Glow</h3>
+          <p>10.50€</p>
+          <button class="add-to-cart-btn">Shto në shportë</button>
+        </div>
+
+        <div
+          class="product-card"
+          onclick="goToProductPage('Refreshing Glow')"
+        >
+          <div class="image-container">
+            <img src="/img/3-Refreshing-Glow.jpg" alt="3-Refreshing-Glow" />
+            <button class="wishlist-btn" title="Shto në listën e dëshirave">
+              &#9825;
+            </button>
+          </div>
+          <h3>Refreshing Glow</h3>
+          <p>10.50€</p>
+          <button class="add-to-cart-btn">Shto në shportë</button>
+        </div>
+
+        <div
+          class="product-card"
+          onclick="goToProductPage('Dewy Glow')"
+        >
+          <div class="image-container">
+            <img src="/img/4-Dewy-Glow.jpg" alt="4-Dewy-Glow" />
+            <button class="wishlist-btn" title="Shto në listën e dëshirave">
+              &#9825;
+            </button>
+          </div>
+          <h3>Dewy Glow</h3>
+          <p>10.50€</p>
+          <button class="add-to-cart-btn">Shto në shportë</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="products" id="skincare">
+      <h2>Skincare</h2>
+      <div class="product-grid">
+        <div
+          class="product-card"
+          onclick="goToProductPage('Natural Glow')"
+        >
+          <div class="image-container">
+            <img src="/img/1-Natural-Glow.jpg" alt="natural-glow" />
+            <button class="wishlist-btn" title="Shto në listën e dëshirave">
+              &#9825;
+            </button>
+          </div>
+          <h3>Natural Glow</h3>
+          <p>10.50€</p>
+          <button class="add-to-cart-btn">Shto në shportë</button>
+        </div>
+
+        <div
+          class="product-card"
+          onclick="goToProductPage('Golden glow')"
+        >
+          <div class="image-container">
+            <img src="/img/10-Golden-Glow.jpg" alt="golden-glow" />
+            <button class="wishlist-btn" title="Shto në listën e dëshirave">
+              &#9825;
+            </button>
+          </div>
+          <h3>Golden Glow</h3>
+          <p>10.50€</p>
+          <button class="add-to-cart-btn">Shto në shportë</button>
+        </div>
+
+        <div
+          class="product-card"
+          onclick="goToProductPage('Refreshing Glow')"
+        >
+          <div class="image-container">
+            <img src="/img/3-Refreshing-Glow.jpg" alt="3-Refreshing-Glow" />
+            <button class="wishlist-btn" title="Shto në listën e dëshirave">
+              &#9825;
+            </button>
+          </div>
+          <h3>Refreshing Glow</h3>
+          <p>10.50€</p>
+          <button class="add-to-cart-btn">Shto në shportë</button>
+        </div>
+
+        <div
+          class="product-card"
+          onclick="goToProductPage('Dewy Glow')"
+        >
+          <div class="image-container">
+            <img src="/img/4-Dewy-Glow.jpg" alt="4-Dewy-Glow" />
+            <button class="wishlist-btn" title="Shto në listën e dëshirave">
+              &#9825;
+            </button>
+          </div>
+          <h3>Dewy Glow</h3>
+          <p>10.50€</p>
+          <button class="add-to-cart-btn">Shto në shportë</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Makeup Section -->
+    <section class="products" id="makeup">
+      <h2>Makeup</h2>
+      <div class="product-grid">
+        <div
+          class="product-card"
+          onclick="goToProductPage('Natural Glow')"
+        >
+          <div class="image-container">
+            <img src="/img/1-Natural-Glow.jpg" alt="natural-glow" />
+            <button class="wishlist-btn" title="Shto në listën e dëshirave">
+              &#9825;
+            </button>
+          </div>
+          <h3>Natural Glow</h3>
+          <p>10.50€</p>
+          <button class="add-to-cart-btn">Shto në shportë</button>
+        </div>
+
+        <div
+          class="product-card"
+          onclick="goToProductPage('Golden glow')"
+        >
+          <div class="image-container">
+            <img src="/img/10-Golden-Glow.jpg" alt="golden-glow" />
+            <button class="wishlist-btn" title="Shto në listën e dëshirave">
+              &#9825;
+            </button>
+          </div>
+          <h3>Golden Glow</h3>
+          <p>10.50€</p>
+          <button class="add-to-cart-btn">Shto në shportë</button>
+        </div>
+
+        <div
+          class="product-card"
+          onclick="goToProductPage('Refreshing Glow')"
+        >
+          <div class="image-container">
+            <img src="/img/3-Refreshing-Glow.jpg" alt="3-Refreshing-Glow" />
+            <button class="wishlist-btn" title="Shto në listën e dëshirave">
+              &#9825;
+            </button>
+          </div>
+          <h3>Refreshing Glow</h3>
+          <p>10.50€</p>
+          <button class="add-to-cart-btn">Shto në shportë</button>
+        </div>
+
+        <div
+          class="product-card"
+          onclick="goToProductPage('Dewy Glow')"
+        >
+          <div class="image-container">
+            <img src="/img/4-Dewy-Glow.jpg" alt="4-Dewy-Glow" />
+            <button class="wishlist-btn" title="Shto në listën e dëshirave">
+              &#9825;
+            </button>
+          </div>
+          <h3>Dewy Glow</h3>
+          <p>10.50€</p>
+          <button class="add-to-cart-btn">Shto në shportë</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bodycare Section -->
+    <section class="products" id="bodycare">
+      <h2>Bodycare</h2>
+      <div class="product-grid">
+        <div
+          class="product-card"
+          onclick="goToProductPage('Natural Glow')"
+        >
+          <div class="image-container">
+            <img src="/img/1-Natural-Glow.jpg" alt="natural-glow" />
+            <button class="wishlist-btn" title="Shto në listën e dëshirave">
+              &#9825;
+            </button>
+          </div>
+          <h3>Natural Glow</h3>
+          <p>10.50€</p>
+          <button class="add-to-cart-btn">Shto në shportë</button>
+        </div>
+
+        <div
+          class="product-card"
+          onclick="goToProductPage('Golden glow')"
+        >
+          <div class="image-container">
+            <img src="/img/10-Golden-Glow.jpg" alt="golden-glow" />
+            <button class="wishlist-btn" title="Shto në listën e dëshirave">
+              &#9825;
+            </button>
+          </div>
+          <h3>Golden Glow</h3>
+          <p>10.50€</p>
+          <button class="add-to-cart-btn">Shto në shportë</button>
+        </div>
+
+        <div
+          class="product-card"
+          onclick="goToProductPage('Refreshing Glow')"
+        >
+          <div class="image-container">
+            <img src="/img/3-Refreshing-Glow.jpg" alt="3-Refreshing-Glow" />
+            <button class="wishlist-btn" title="Shto në listën e dëshirave">
+              &#9825;
+            </button>
+          </div>
+          <h3>Refreshing Glow</h3>
+          <p>10.50€</p>
+          <button class="add-to-cart-btn">Shto në shportë</button>
+        </div>
+
+        <div
+          class="product-card"
+          onclick="goToProductPage('Dewy Glow')"
+        >
+          <div class="image-container">
+            <img src="/img/4-Dewy-Glow.jpg" alt="4-Dewy-Glow" />
+            <button class="wishlist-btn" title="Shto në listën e dëshirave">
+              &#9825;
+            </button>
+          </div>
+          <h3>Dewy Glow</h3>
+          <p>10.50€</p>
+          <button class="add-to-cart-btn">Shto në shportë</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2024 Beauty Shop | <a href="#contact">Na kontaktoni</a></p>
+    </footer>
+  </body>
+  
+  <script>
+    function scrollToSection(sectionId) {
+      const section = document.getElementById(sectionId);
+      const headerOffset = document.querySelector("header").offsetHeight;
+      const elementPosition = section.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    }
+
+    function goToProductPage(product) {
+      window.location.href = `/product-page.html?product=${product}`;
+    }
+  </script>
+
+</html>
