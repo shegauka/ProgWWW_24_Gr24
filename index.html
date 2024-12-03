@@ -12,43 +12,87 @@
         color: #333;
         background-color: #fcfcfc;
       }
-
       /* Header */
       header {
-        background-color: #ffccd5;
-        padding: 20px 10px;
-        text-align: center;
         position: sticky;
         top: 0;
+        width: 100%;
         z-index: 1000;
+        height: 100px;
+        display: flex;
+        align-items: center;
+        background-color: transparent;
       }
 
-      header h1 {
+      #headerCanvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100px;
+        z-index: -1;
+      }
+
+      .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+        margin: 0;
         color: #fff;
-        font-size: 2.5rem;
+      }
+
+      ul {
+        display: flex;
+        list-style: none;
+        padding: 0;
         margin: 0;
       }
 
-      nav ul {
-        display: flex;
-        justify-content: center;
-        list-style: none;
-        padding: 0;
-        margin: 10px 0 0 0;
-      }
-
-      nav ul li {
+      ul li {
         margin: 0 15px;
       }
 
-      nav ul li a {
+      ul li a {
         text-decoration: none;
         color: #fff;
         font-weight: bold;
+        font-size: 1rem;
+        transition: color 0.3s ease;
       }
 
-      nav ul li a:hover {
-        text-decoration: underline;
+      ul li a:hover {
+        color: #ffccd5;
+      }
+
+      #signupBtn {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 20px;
+        font-size: 1rem;
+        color: #fff;
+        background-color: #ff6699;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+      }
+
+      #signupBtn:hover {
+        background-color: #e60073;
+        transform: scale(1.05);
+      }
+
+      .signup-icon {
+        font-size: 1.2rem;
       }
 
       /* Hero */
@@ -227,7 +271,7 @@
 
       .add-to-cart-btn:hover {
         background-color: #e60073;
-      } 
+      }
 
       footer {
         background-color: #ffccd5;
@@ -251,15 +295,18 @@
   <body>
     <!-- Header -->
     <header>
-      <nav>
-        <!--TODO: me i bo me ni rresht-->
-        <h1>Beauty shop</h1>
+      <canvas id="headerCanvas"></canvas>
+      <nav class="nav-container">
+        <h1>Beauty Shop</h1>
         <ul>
           <li><a href="#products">Produktet</a></li>
           <li><a href="#categories">Kategoritë</a></li>
           <li><a href="#contact">Kontakti</a></li>
           <li><a href="#about">Rreth nesh</a></li>
         </ul>
+        <button id="signupBtn">
+          <span class="signup-icon">&#128100;</span> Kycu
+        </button>
       </nav>
     </header>
 
@@ -306,10 +353,7 @@
     <section class="products" id="products">
       <h2>Produktet më të shitura</h2>
       <div class="product-grid">
-        <div
-          class="product-card"
-          onclick="goToProductPage('Natural Glow')"
-        >
+        <div class="product-card" onclick="goToProductPage('Natural Glow')">
           <div class="image-container">
             <img src="/img/1-Natural-Glow.jpg" alt="natural-glow" />
             <button class="wishlist-btn" title="Shto në listën e dëshirave">
@@ -321,10 +365,7 @@
           <button class="add-to-cart-btn">Shto në shportë</button>
         </div>
 
-        <div
-          class="product-card"
-          onclick="goToProductPage('Golden glow')"
-        >
+        <div class="product-card" onclick="goToProductPage('Golden glow')">
           <div class="image-container">
             <img src="/img/10-Golden-Glow.jpg" alt="golden-glow" />
             <button class="wishlist-btn" title="Shto në listën e dëshirave">
@@ -336,10 +377,7 @@
           <button class="add-to-cart-btn">Shto në shportë</button>
         </div>
 
-        <div
-          class="product-card"
-          onclick="goToProductPage('Refreshing Glow')"
-        >
+        <div class="product-card" onclick="goToProductPage('Refreshing Glow')">
           <div class="image-container">
             <img src="/img/3-Refreshing-Glow.jpg" alt="3-Refreshing-Glow" />
             <button class="wishlist-btn" title="Shto në listën e dëshirave">
@@ -351,10 +389,7 @@
           <button class="add-to-cart-btn">Shto në shportë</button>
         </div>
 
-        <div
-          class="product-card"
-          onclick="goToProductPage('Dewy Glow')"
-        >
+        <div class="product-card" onclick="goToProductPage('Dewy Glow')">
           <div class="image-container">
             <img src="/img/4-Dewy-Glow.jpg" alt="4-Dewy-Glow" />
             <button class="wishlist-btn" title="Shto në listën e dëshirave">
@@ -371,10 +406,7 @@
     <section class="products" id="skincare">
       <h2>Skincare</h2>
       <div class="product-grid">
-        <div
-          class="product-card"
-          onclick="goToProductPage('Natural Glow')"
-        >
+        <div class="product-card" onclick="goToProductPage('Natural Glow')">
           <div class="image-container">
             <img src="/img/1-Natural-Glow.jpg" alt="natural-glow" />
             <button class="wishlist-btn" title="Shto në listën e dëshirave">
@@ -386,10 +418,7 @@
           <button class="add-to-cart-btn">Shto në shportë</button>
         </div>
 
-        <div
-          class="product-card"
-          onclick="goToProductPage('Golden glow')"
-        >
+        <div class="product-card" onclick="goToProductPage('Golden glow')">
           <div class="image-container">
             <img src="/img/10-Golden-Glow.jpg" alt="golden-glow" />
             <button class="wishlist-btn" title="Shto në listën e dëshirave">
@@ -401,10 +430,7 @@
           <button class="add-to-cart-btn">Shto në shportë</button>
         </div>
 
-        <div
-          class="product-card"
-          onclick="goToProductPage('Refreshing Glow')"
-        >
+        <div class="product-card" onclick="goToProductPage('Refreshing Glow')">
           <div class="image-container">
             <img src="/img/3-Refreshing-Glow.jpg" alt="3-Refreshing-Glow" />
             <button class="wishlist-btn" title="Shto në listën e dëshirave">
@@ -416,10 +442,7 @@
           <button class="add-to-cart-btn">Shto në shportë</button>
         </div>
 
-        <div
-          class="product-card"
-          onclick="goToProductPage('Dewy Glow')"
-        >
+        <div class="product-card" onclick="goToProductPage('Dewy Glow')">
           <div class="image-container">
             <img src="/img/4-Dewy-Glow.jpg" alt="4-Dewy-Glow" />
             <button class="wishlist-btn" title="Shto në listën e dëshirave">
@@ -437,10 +460,7 @@
     <section class="products" id="makeup">
       <h2>Makeup</h2>
       <div class="product-grid">
-        <div
-          class="product-card"
-          onclick="goToProductPage('Natural Glow')"
-        >
+        <div class="product-card" onclick="goToProductPage('Natural Glow')">
           <div class="image-container">
             <img src="/img/1-Natural-Glow.jpg" alt="natural-glow" />
             <button class="wishlist-btn" title="Shto në listën e dëshirave">
@@ -452,10 +472,7 @@
           <button class="add-to-cart-btn">Shto në shportë</button>
         </div>
 
-        <div
-          class="product-card"
-          onclick="goToProductPage('Golden glow')"
-        >
+        <div class="product-card" onclick="goToProductPage('Golden glow')">
           <div class="image-container">
             <img src="/img/10-Golden-Glow.jpg" alt="golden-glow" />
             <button class="wishlist-btn" title="Shto në listën e dëshirave">
@@ -467,10 +484,7 @@
           <button class="add-to-cart-btn">Shto në shportë</button>
         </div>
 
-        <div
-          class="product-card"
-          onclick="goToProductPage('Refreshing Glow')"
-        >
+        <div class="product-card" onclick="goToProductPage('Refreshing Glow')">
           <div class="image-container">
             <img src="/img/3-Refreshing-Glow.jpg" alt="3-Refreshing-Glow" />
             <button class="wishlist-btn" title="Shto në listën e dëshirave">
@@ -482,10 +496,7 @@
           <button class="add-to-cart-btn">Shto në shportë</button>
         </div>
 
-        <div
-          class="product-card"
-          onclick="goToProductPage('Dewy Glow')"
-        >
+        <div class="product-card" onclick="goToProductPage('Dewy Glow')">
           <div class="image-container">
             <img src="/img/4-Dewy-Glow.jpg" alt="4-Dewy-Glow" />
             <button class="wishlist-btn" title="Shto në listën e dëshirave">
@@ -503,10 +514,7 @@
     <section class="products" id="bodycare">
       <h2>Bodycare</h2>
       <div class="product-grid">
-        <div
-          class="product-card"
-          onclick="goToProductPage('Natural Glow')"
-        >
+        <div class="product-card" onclick="goToProductPage('Natural Glow')">
           <div class="image-container">
             <img src="/img/1-Natural-Glow.jpg" alt="natural-glow" />
             <button class="wishlist-btn" title="Shto në listën e dëshirave">
@@ -518,10 +526,7 @@
           <button class="add-to-cart-btn">Shto në shportë</button>
         </div>
 
-        <div
-          class="product-card"
-          onclick="goToProductPage('Golden glow')"
-        >
+        <div class="product-card" onclick="goToProductPage('Golden glow')">
           <div class="image-container">
             <img src="/img/10-Golden-Glow.jpg" alt="golden-glow" />
             <button class="wishlist-btn" title="Shto në listën e dëshirave">
@@ -533,10 +538,7 @@
           <button class="add-to-cart-btn">Shto në shportë</button>
         </div>
 
-        <div
-          class="product-card"
-          onclick="goToProductPage('Refreshing Glow')"
-        >
+        <div class="product-card" onclick="goToProductPage('Refreshing Glow')">
           <div class="image-container">
             <img src="/img/3-Refreshing-Glow.jpg" alt="3-Refreshing-Glow" />
             <button class="wishlist-btn" title="Shto në listën e dëshirave">
@@ -548,10 +550,7 @@
           <button class="add-to-cart-btn">Shto në shportë</button>
         </div>
 
-        <div
-          class="product-card"
-          onclick="goToProductPage('Dewy Glow')"
-        >
+        <div class="product-card" onclick="goToProductPage('Dewy Glow')">
           <div class="image-container">
             <img src="/img/4-Dewy-Glow.jpg" alt="4-Dewy-Glow" />
             <button class="wishlist-btn" title="Shto në listën e dëshirave">
@@ -570,7 +569,7 @@
       <p>&copy; 2024 Beauty Shop | <a href="#contact">Na kontaktoni</a></p>
     </footer>
   </body>
-  
+
   <script>
     function scrollToSection(sectionId) {
       const section = document.getElementById(sectionId);
@@ -587,6 +586,45 @@
     function goToProductPage(product) {
       window.location.href = `/product-page.html?product=${product}`;
     }
-  </script>
 
+    //canvas elementi per header
+    const canvas = document.getElementById("headerCanvas");
+    const ctx = canvas.getContext("2d");
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = 100;
+      drawCanvas();
+    }
+
+    function drawCanvas() {
+      const gradient = ctx.createLinearGradient(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+      );
+      gradient.addColorStop(0, "#ff6699");
+      gradient.addColorStop(1, "#ffccd5");
+
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      for (let i = 0; i < 20; i++) {
+        ctx.beginPath();
+        ctx.arc(
+          Math.random() * canvas.width,
+          Math.random() * canvas.height,
+          Math.random() * 10,
+          0,
+          Math.PI * 2
+        );
+        ctx.fillStyle = `rgba(255, 255, 255, ${Math.random() * 0.5 + 0.2})`;
+        ctx.fill();
+      }
+    }
+
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas();
+  </script>
 </html>
