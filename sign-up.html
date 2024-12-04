@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="sq">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Regjistrohu - Dyqani i Bukurisë</title>
+    <style>
+      body {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        background-color: #fcfcfc;
+        color: #333;
+        margin: 0;
+        padding: 0;
+      }
+      header {
+        position: sticky;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+        height: 100px;
+        display: flex;
+        align-items: center;
+        background-color: transparent;
+      }
+
+      #headerCanvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100px;
+        z-index: -1;
+      }
+
+      .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+        margin: 0;
+        color: #fff;
+      }
+
+      .header-link {
+        text-decoration: none;
+        color: #ffccd5;
+      }
+      .header-link:active {
+        color: #ffccd5;
+        text-decoration: none;
+      }
+      .header-link:hover {
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .header-link:visited {
+        color: #ffccd5;
+        text-decoration: none;
+      }
+
+      .container {
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 20px;
+        background: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+      }
+
+      h1 {
+        text-align: center;
+        color: #ff6699;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      label {
+        font-weight: bold;
+      }
+
+      input,
+      select {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      input[type="submit"] {
+        background-color: #ff6699;
+        color: #fff;
+        font-size: 1rem;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #e60073;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <canvas id="headerCanvas"></canvas>
+      <nav class="nav-container">
+        <h1><a class="header-link" href="/index.html">Beauty Shop</a></h1>
+      </nav>
+    </header>
+    <div class="container">
+      <h1>Regjistrohu</h1>
+      <form id="signupForm">
+        <label for="name">Emri:</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          required
+          minlength="3"
+          maxlength="50"
+          placeholder="Emri juaj i plotë"
+        />
+
+        <label for="email">Email:</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          placeholder="shembull@mail.com"
+        />
+
+        <label for="password">Fjalëkalimi:</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          required
+          minlength="8"
+          placeholder="Të paktën 8 karaktere"
+        />
+
+        <label for="confirmPassword">Konfirmo Fjalëkalimin:</label>
+        <input
+          type="password"
+          id="confirmPassword"
+          name="confirmPassword"
+          required
+          placeholder="Rishkruaj fjalëkalimin"
+        />
+
+        <label for="gender">Gjinia:</label>
+        <select id="gender" name="gender" required>
+          <option value="">Zgjidh gjininë</option>
+          <option value="female">Femër</option>
+          <option value="male">Mashkull</option>
+          <option value="other">Tjetër</option>
+        </select>
+
+        <label for="newsletter">
+          <input type="checkbox" id="newsletter" name="newsletter" />
+          Abonohu në magazinën tonë
+        </label>
+
+        <input type="submit" value="Regjistrohu" />
+      </form>
+    </div>
+
+    <script>
+      const form = document.getElementById("signupForm");
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const password = document.getElementById("password").value;
+        const confirmPassword =
+          document.getElementById("confirmPassword").value;
+
+        if (password !== confirmPassword) {
+          alert("Fjalëkalimet nuk përputhen!");
+        } else {
+          alert("Regjistrimi u krye me sukses!");
+          window.location.href = "/log-in.html";
+        }
+      });
+
+      const canvas = document.getElementById("headerCanvas");
+      const ctx = canvas.getContext("2d");
+
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = 100;
+        drawCanvas();
+      }
+
+      function drawCanvas() {
+        const gradient = ctx.createLinearGradient(
+          0,
+          0,
+          canvas.width,
+          canvas.height
+        );
+        gradient.addColorStop(0, "#ff6699");
+        gradient.addColorStop(1, "#ffccd5");
+
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        for (let i = 0; i < 20; i++) {
+          ctx.beginPath();
+          ctx.arc(
+            Math.random() * canvas.width,
+            Math.random() * canvas.height,
+            Math.random() * 10,
+            0,
+            Math.PI * 2
+          );
+          ctx.fillStyle = `rgba(255, 255, 255, ${Math.random() * 0.5 + 0.2})`;
+          ctx.fill();
+        }
+      }
+
+      window.addEventListener("resize", resizeCanvas);
+      resizeCanvas();
+    </script>
+  </body>
+</html>
