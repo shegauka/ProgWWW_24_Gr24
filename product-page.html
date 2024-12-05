@@ -243,6 +243,35 @@
       footer a:hover {
         text-decoration: underline;
       }
+
+      .comparison-table {
+        width: 100%;
+        max-width: 1200px;
+        margin: 40px auto;
+        border-collapse: collapse;
+        border: 2px solid #ddd;
+        font-size: 1rem;
+      }
+
+      .comparison-table th,
+      .comparison-table td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: center;
+      }
+
+      .comparison-table th {
+        background-color: #ff6699;
+        color: white;
+      }
+
+      .comparison-table td {
+        background-color: #fff;
+      }
+
+      .comparison-table tr:nth-child(even) td {
+        background-color: #ffccd5;
+      }
     </style>
   </head>
   <body>
@@ -311,6 +340,40 @@
           ></textarea>
           <button type="submit">Konfirmo</button>
         </form>
+      </section>
+
+      <section id="product-comparison">
+        <h2 style="text-align: center; color: #ff6699;">Krahasimi i Produkteve</h2>
+        <table class="comparison-table" cellspacing="5" cellpadding="10">
+          <thead>
+            <tr>
+              <th>Produkt</th>
+              <th>Çmimi</th>
+              <th>Sasia</th>
+              <th>Përbërësit Kryesorë</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Natural Glow</td>
+              <td>10.50€</td>
+              <td>200ml</td>
+              <td>Aloe Vera, Vitamin C</td>
+            </tr>
+            <tr>
+              <td>Hydrating Mist</td>
+              <td>8.99€</td>
+              <td>150ml</td>
+              <td>Rose Water, Hyaluronic Acid</td>
+            </tr>
+            <tr>
+              <td>Brightening Cream</td>
+              <td>12.30€</td>
+              <td>100ml</td>
+              <td>Niacinamide, Licorice Root</td>
+            </tr>
+          </tbody>
+        </table>
       </section>
     </main>
     <footer>
