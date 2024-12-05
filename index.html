@@ -24,6 +24,24 @@
         background-color: transparent;
       }
 
+      .header-link {
+        text-decoration: none;
+        color: #ffccd5;
+      }
+      .header-link:active {
+        color: #ffccd5;
+        text-decoration: none;
+      }
+      .header-link:hover {
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .header-link:visited {
+        color: #ffccd5;
+        text-decoration: none;
+      }
+
       #headerCanvas {
         position: absolute;
         top: 0;
@@ -101,7 +119,6 @@
         text-align: center;
         background-image: url("/img/hero.webp");
         background-size: contain;
-        width: 100%;
         background-position: center;
         color: #fff;
         padding: 60px 10px;
@@ -297,16 +314,16 @@
     <header>
       <canvas id="headerCanvas"></canvas>
       <nav class="nav-container">
-        <h1>Beauty Shop</h1>
+        <h1><a class="header-link" href="/">Beauty Shop</a></h1>
         <ul>
           <li><a href="#products">Produktet</a></li>
           <li><a href="#categories">Kategoritë</a></li>
           <li><a href="#contact">Kontakti</a></li>
           <li><a href="#about">Rreth nesh</a></li>
         </ul>
-        <button id="signupBtn">
-          <span class="signup-icon">&#128100;</span> Kycu
-        </button>
+        <a class="header-link" href="/sign-up.html"><button id="signupBtn">
+          <span class="signup-icon">&#128100;</span> Llogaria
+        </button></a>
       </nav>
     </header>
 
@@ -566,7 +583,9 @@
 
     <!-- Footer -->
     <footer>
-      <p>&copy; 2024 Beauty Shop | <a href="/contact-us.html">Na kontaktoni</a></p>
+      <p>
+        &copy; 2024 Beauty Shop | <a href="/contact-us.html">Na kontaktoni</a>
+      </p>
     </footer>
   </body>
 
