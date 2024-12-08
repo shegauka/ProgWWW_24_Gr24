@@ -137,21 +137,35 @@
     <form style="padding-right: 8px;" id="checkoutForm">
       <h2>Bleje produktin:</h2>
       <label for="customerName">Emri: *</label>
-      <input type="text" id="customerName" required />
+      <input type="text" id="customerName" required autocomplete="name" />
 
       <label for="email">Email: *</label>
-      <input type="email" id="email" required />
+      <input type="email" id="email" required autocomplete="email" />
 
-      <label for="cardNumber">Numri ne kartele: *</label>
-      <input type="text" id="cardNumber" maxlength="16" required />
+      <label for="phone">Numri i telefonit: *</label>
+      <input type="tel" id="phone" required pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890" />
+
+      <label for="cardNumber">Numri në kartelë: *</label>
+      <input type="text" id="cardNumber" maxlength="16" required inputmode="numeric" />
+
+      <label for="deliveryDate">Data e dorëzimit:</label>
+      <input type="date" id="deliveryDate" required />
 
       <label for="promoCode">Kuponi:</label>
-      <input type="text" id="promoCode" />
+      <input type="text" id="promoCode" list="promoCodes" />
+      <datalist id="promoCodes">
+        <option value="DISCOUNT10">
+        <option value="DISCOUNT20">
+        <option value="SAVE5">
+      </datalist>
 
-      <h2>Cfare jeni duke blere:</h2>
+      <label for="comment">Komenti për porosinë:</label>
+      <textarea id="comment" rows="4" placeholder="Shkruani komentin tuaj këtu..."></textarea>
+
+      <h2>Çfarë jeni duke blerë:</h2>
       <div class="order-summary">
         <p>Produkti: <span id="productName">Duke u procesuar...</span></p>
-        <p>Cmimi: <span id="price">Duke u procesuar...</span></p>
+        <p>Çmimi: <span id="price">Duke u procesuar...</span></p>
         <p>Totali: <span id="total">Duke u procesuar...</span></p>
       </div>
 
