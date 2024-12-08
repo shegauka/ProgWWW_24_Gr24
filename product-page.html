@@ -281,9 +281,8 @@
         <h1><a class="header-link" href="/index.html">Beauty Shop</a></h1>
         <ul>
           <li><a href="#products">Produktet</a></li>
-          <li><a href="#categories">Kategoritë</a></li>
-          <li><a href="#contact">Kontakti</a></li>
-          <li><a href="#about">Rreth nesh</a></li>
+          <li><a href="/contact-us.html">Kontakti</a></li>
+          <li><a href="/about-us.html">Rreth nesh</a></li>
         </ul>
         <button id="signupBtn">
           <span class="signup-icon">&#128100;</span> Kycu
@@ -310,22 +309,69 @@
       </section>
 
       <section class="reviews">
-        <h3>Vleresimet e konsumatoreve</h3>
+        <h3 style="color: #ff6699">Vlerësimet e Konsumatorëve</h3>
         <div id="reviews-list">
           <div class="review">
-            <bold>Filan Fisteku:</bold>
+            <b>Filan Fisteku:</b>
             <p>
-              Produkt fantastik. Lekura ime ndihet fantastike pasi e perdora per
-              vetem 2 jave..
+              Produkt fantastik. Lekura ime ndihet fantastike pasi e perdora për
+              vetëm 2 javë.
             </p>
+            <p><strong>Audio i ngarkuar:</strong></p>
+            <audio controls>
+              <source src="/img/audio2.mp3" type="audio/mpeg" />
+              Browser juaj nuk e mbështet audio tagun.
+            </audio>
           </div>
           <div class="review">
-            <bold>Hasane Hasanaj:</bold>
+            <b>Hasane Hasanaj:</b>
             <p>Njerez!! Ja vlen me e ble, jam ndje shume fantastike!</p>
+            <p><strong>Video e ngarkuar:</strong></p>
+            <video controls width="320">
+              <source src="/img/video2.mp4" type="video/mp4" />
+              Browser juaj nuk e mbështet video tagun.
+            </video>
+          </div>
+          <div class="review">
+            <b>Filan Fisteku:</b>
+            <p>
+              Produkt fantastik. Lekura ime ndihet fantastike pasi e perdora për
+              vetëm 2 javë.
+            </p>
+            <p><strong>Audio i ngarkuar:</strong></p>
+            <audio controls>
+              <source src="/img/audio1.mp3" type="audio/mpeg" />
+              Browser juaj nuk e mbështet audio tagun.
+            </audio>
+          </div>
+          <div class="review">
+            <b>Hasane Hasanaj:</b>
+            <p>Njerez!! Ja vlen me e ble, jam ndje shume fantastike!</p>
+            <p><strong>Video e ngarkuar:</strong></p>
+            <video controls width="320">
+              <source src="/img/video1.mp4" type="video/mp4" />
+              Browser juaj nuk e mbështet video tagun.
+            </video>
+          </div>
+          <div class="review">
+            <b>Ariana Kryeziu:</b>
+            <p>Produkt me ka ardh gabim!</p>
+            <p><strong>Foto e ngarkuar:</strong></p>
+            <img
+              src="/img/8-Rosy-Glow.jpg"
+              alt="Foto e klientit"
+              style="
+                max-width: 100%;
+                height: auto;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+              "
+            />
           </div>
         </div>
+
         <form class="review-form" id="reviewForm">
-          <h3>Shto nje vleresim:</h3>
+          <h3>Shto një vlerësim:</h3>
           <input
             type="text"
             id="reviewerName"
@@ -335,15 +381,18 @@
           <textarea
             id="reviewContent"
             rows="4"
-            placeholder="Vleresimi juaj"
+            placeholder="Vlerësimi juaj"
             required
           ></textarea>
+
           <button type="submit">Konfirmo</button>
         </form>
       </section>
 
       <section id="product-comparison">
-        <h2 style="text-align: center; color: #ff6699;">Krahasimi i Produkteve</h2>
+        <h2 style="text-align: center; color: #ff6699">
+          Krahasimi i Produkteve
+        </h2>
         <table class="comparison-table" cellspacing="5" cellpadding="10">
           <thead>
             <tr>
@@ -384,7 +433,18 @@
   </body>
   <script>
     function addToCart() {
+      const product = {
+        name: "Natural Glow",
+        price: 10.5,
+        description:
+          "Nje produkt fantastik i cili perdoret per shkaqe fantastike dhe jep rezultate fantastike.",
+      };
+
+      localStorage.setItem("cart", JSON.stringify(product));
+
       alert("Produkti u shtua në shportë!");
+
+      window.location.href = "checkout.html";
     }
 
     document

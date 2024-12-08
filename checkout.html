@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: linear-gradient(120deg, #ffccd5, #ff6699);
+      color: #333;
+      overflow-x: hidden;
+    }
+
+    header {
+      background-color: #e60073;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+    }
+
+    main {
+      max-width: 800px;
+      margin: 20px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transform: rotateY(0deg);
+      perspective: 800px;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    main:hover {
+      transform: rotateY(10deg);
+    }
+
+    h1, h2 {
+      color: #ff6699;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input, button {
+      width: 100%;
+      margin-bottom: 15px;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+    }
+
+    button {
+      background-color: #ff6699;
+      color: #fff;
+      cursor: pointer;
+      transition: transform 0.3s, background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #e60073;
+      transform: scale(1.05);
+    }
+
+    /* 2D Transformations */
+    #checkoutForm {
+      transform: translate(0, 0);
+      animation: slideIn 1s ease-in-out;
+    }
+
+    @keyframes slideIn {
+      0% {
+        transform: translateX(-100%);
+      }
+      100% {
+        transform: translateX(0);
+      }
+    }
+
+    /* 3D Transformations */
+    #total {
+      display: inline-block;
+      transform: rotateX(0deg);
+      perspective: 600px;
+      transition: transform 0.5s;
+    }
+
+    #total:hover {
+      transform: rotateX(360deg);
+    }
+
+    @keyframes changeBackground {
+      0% {
+        background: #ffccd5;
+      }
+      50% {
+        background: #ff6699;
+      }
+      100% {
+        background: #e60073;
+      }
+    }
+
+    body {
+      animation: changeBackground 10s infinite alternate;
+    }
+
+    .order-summary {
+      column-count: 2;
+      column-gap: 20px;
+      column-rule: 1px solid #ff6699;
+    }
+
+    .order-summary p {
+      margin: 0 0 10px;
+    }
+
+    textarea {
+      resize: both;
+      overflow: auto;
+    }
+
+    input:focus {
+      outline: 2px solid #ff6699;
+      outline-offset: 5px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Checkout</h1>
+  </header>
+  <main>
+    <form style="padding-right: 8px;" id="checkoutForm">
+      <h2>Bleje produktin:</h2>
+      <label for="customerName">Emri: *</label>
+      <input type="text" id="customerName" required autocomplete="name" />
+
+      <label for="email">Email: *</label>
+      <input type="email" id="email" required autocomplete="email" />
+
+      <label for="phone">Numri i telefonit: *</label>
+      <input type="tel" id="phone" required pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890" />
+
+      <label for="cardNumber">Numri në kartelë: *</label>
+      <input type="text" id="cardNumber" maxlength="16" required inputmode="numeric" />
+
+      <label for="deliveryDate">Data e dorëzimit:</label>
+      <input type="date" id="deliveryDate" required />
+
+      <label for="promoCode">Kuponi:</label>
+      <input type="text" id="promoCode" list="promoCodes" />
+      <datalist id="promoCodes">
+        <option value="DISCOUNT10">
+        <option value="DISCOUNT20">
+        <option value="SAVE5">
+      </datalist>
+
+      <label for="comment">Komenti për porosinë:</label>
+      <textarea id="comment" rows="4" placeholder="Shkruani komentin tuaj këtu..."></textarea>
+
+      <h2>Çfarë jeni duke blerë:</h2>
+      <div class="order-summary">
+        <p>Produkti: <span id="productName">Duke u procesuar...</span></p>
+        <p>Çmimi: <span id="price">Duke u procesuar...</span></p>
+        <p>Totali: <span id="total">Duke u procesuar...</span></p>
+      </div>
+
+      <button style="margin-top: 4px;" type="submit">Konfirmo porosinë</button>
+    </form>
+  </main>
+  <script src="/checkout.js"></script>
+</body>
+</html>
