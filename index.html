@@ -114,12 +114,12 @@
       }
 
       /* Hero */
-      /*TODO: Me ndrru foton ose background per tekst???*/
       .hero {
         text-align: center;
         background-image: url("/img/hero.webp");
         background-size: contain;
         background-position: center;
+        background-attachment: fixed;
         color: #fff;
         padding: 60px 10px;
       }
@@ -275,7 +275,7 @@
         margin: 0 0 10px;
       }
 
-      .add-to-cart-btn {
+      .check-details-btn {
         padding: 10px 20px;
         font-size: 0.9rem;
         color: #fff;
@@ -286,25 +286,120 @@
         transition: background 0.3s ease;
       }
 
-      .add-to-cart-btn:hover {
+      .check-details-btn:hover {
         background-color: #e60073;
       }
 
       footer {
+        position: relative;
         background-color: #ffccd5;
-        padding: 20px;
+        padding: 60px 20px;
         text-align: center;
         color: #fff;
+        overflow: hidden;
       }
 
       footer a {
         color: #fff;
         text-decoration: none;
         font-weight: bold;
+        z-index: 10;
       }
 
       footer a:hover {
         text-decoration: underline;
+      }
+
+      .footer-svg-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+
+      .footer-svg-container svg {
+        position: absolute;
+        opacity: 0.3;
+        animation: float 8s ease-in-out infinite;
+      }
+
+      .footer-svg-container svg:nth-child(1) {
+        left: 10%;
+        top: 20%;
+        animation-delay: 0s;
+      }
+
+      .footer-svg-container svg:nth-child(2) {
+        left: 50%;
+        top: 50%;
+        animation-delay: 2s;
+      }
+
+      .footer-svg-container svg:nth-child(3) {
+        left: 80%;
+        top: 10%;
+        animation-delay: 4s;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+        100% {
+          transform: translateY(0);
+        }
+      }
+
+      #wishlist {
+        border: 2px dashed #ff6699;
+        border-radius: 10px;
+        padding: 20px;
+        width: 300px;
+        height: 200px;
+        margin: 20px auto;
+        text-align: center;
+        font-size: 1.2rem;
+        color: #ff6699;
+        background-color: #fff;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      #wishlist.dragover .wishlist-preview {
+        border: 2px dashed #e60073;
+        background-color: #ffe6eb;
+        padding: 10px;
+        border-radius: 8px;
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 0.9rem;
+        color: #e60073;
+      }
+      .wishlist-preview img {
+        width: 40px;
+        height: 40px;
+        border-radius: 5px;
+        object-fit: cover;
+      }
+      .clear-wishlist-btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+        color: #fff;
+        background-color: #ff6699;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+
+      .clear-wishlist-btn:hover {
+        background-color: #e60073;
       }
     </style>
   </head>
@@ -317,13 +412,14 @@
         <h1><a class="header-link" href="/">Beauty Shop</a></h1>
         <ul>
           <li><a href="#products">Produktet</a></li>
-          <li><a href="#categories">Kategoritë</a></li>
-          <li><a href="#contact">Kontakti</a></li>
-          <li><a href="#about">Rreth nesh</a></li>
+          <li><a href="/contact-us.html">Kontakti</a></li>
+          <li><a href="/about-us.html">Rreth nesh</a></li>
         </ul>
-        <a class="header-link" href="/sign-up.html"><button id="signupBtn">
-          <span class="signup-icon">&#128100;</span> Llogaria
-        </button></a>
+        <a class="header-link" href="/sign-up.html"
+          ><button id="signupBtn">
+            <span class="signup-icon">&#128100;</span> Llogaria
+          </button></a
+        >
       </nav>
     </header>
 
@@ -370,7 +466,12 @@
     <section class="products" id="products">
       <h2>Produktet më të shitura</h2>
       <div class="product-grid">
-        <div class="product-card" onclick="goToProductPage('Natural Glow')">
+        <div
+          class="product-card"
+          onclick="goToProductPage('Natural Glow')"
+          data-product="Natural Glow"
+          draggable="true"
+        >
           <div class="image-container">
             <img src="/img/1-Natural-Glow.jpg" alt="natural-glow" />
             <button class="wishlist-btn" title="Shto në listën e dëshirave">
@@ -379,10 +480,15 @@
           </div>
           <h3>Natural Glow</h3>
           <p>10.50€</p>
-          <button class="add-to-cart-btn">Shto në shportë</button>
+          <button class="check-details-btn">Shiko detajet</button>
         </div>
 
-        <div class="product-card" onclick="goToProductPage('Golden glow')">
+        <div
+          class="product-card"
+          onclick="goToProductPage('Golden glow')"
+          data-product="Golden Glow"
+          draggable="true"
+        >
           <div class="image-container">
             <img src="/img/10-Golden-Glow.jpg" alt="golden-glow" />
             <button class="wishlist-btn" title="Shto në listën e dëshirave">
@@ -391,10 +497,15 @@
           </div>
           <h3>Golden Glow</h3>
           <p>10.50€</p>
-          <button class="add-to-cart-btn">Shto në shportë</button>
+          <button class="check-details-btn">Shiko detajet</button>
         </div>
 
-        <div class="product-card" onclick="goToProductPage('Refreshing Glow')">
+        <div
+          class="product-card"
+          onclick="goToProductPage('Refreshing Glow')"
+          data-product="Refreshing Glow"
+          draggable="true"
+        >
           <div class="image-container">
             <img src="/img/3-Refreshing-Glow.jpg" alt="3-Refreshing-Glow" />
             <button class="wishlist-btn" title="Shto në listën e dëshirave">
@@ -403,10 +514,15 @@
           </div>
           <h3>Refreshing Glow</h3>
           <p>10.50€</p>
-          <button class="add-to-cart-btn">Shto në shportë</button>
+          <button class="check-details-btn">Shiko detajet</button>
         </div>
 
-        <div class="product-card" onclick="goToProductPage('Dewy Glow')">
+        <div
+          class="product-card"
+          onclick="goToProductPage('Dewy Glow')"
+          data-product="Dewy Glow"
+          draggable="true"
+        >
           <div class="image-container">
             <img src="/img/4-Dewy-Glow.jpg" alt="4-Dewy-Glow" />
             <button class="wishlist-btn" title="Shto në listën e dëshirave">
@@ -415,7 +531,7 @@
           </div>
           <h3>Dewy Glow</h3>
           <p>10.50€</p>
-          <button class="add-to-cart-btn">Shto në shportë</button>
+          <button class="check-details-btn">Shiko detajet</button>
         </div>
       </div>
     </section>
@@ -423,7 +539,12 @@
     <section class="products" id="skincare">
       <h2>Skincare</h2>
       <div class="product-grid">
-        <div class="product-card" onclick="goToProductPage('Natural Glow')">
+        <div
+          class="product-card"
+          onclick="goToProductPage('Natural Glow')"
+          data-product="Natural Glow"
+          draggable="true"
+        >
           <div class="image-container">
             <img src="/img/1-Natural-Glow.jpg" alt="natural-glow" />
             <button class="wishlist-btn" title="Shto në listën e dëshirave">
@@ -432,10 +553,15 @@
           </div>
           <h3>Natural Glow</h3>
           <p>10.50€</p>
-          <button class="add-to-cart-btn">Shto në shportë</button>
+          <button class="check-details-btn">Shiko detajet</button>
         </div>
 
-        <div class="product-card" onclick="goToProductPage('Golden glow')">
+        <div
+          class="product-card"
+          onclick="goToProductPage('Golden glow')"
+          data-product="Golden Glow"
+          draggable="true"
+        >
           <div class="image-container">
             <img src="/img/10-Golden-Glow.jpg" alt="golden-glow" />
             <button class="wishlist-btn" title="Shto në listën e dëshirave">
@@ -444,10 +570,15 @@
           </div>
           <h3>Golden Glow</h3>
           <p>10.50€</p>
-          <button class="add-to-cart-btn">Shto në shportë</button>
+          <button class="check-details-btn">Shiko detajet</button>
         </div>
 
-        <div class="product-card" onclick="goToProductPage('Refreshing Glow')">
+        <div
+          class="product-card"
+          onclick="goToProductPage('Refreshing Glow')"
+          data-product="Refreshing Glow"
+          draggable="true"
+        >
           <div class="image-container">
             <img src="/img/3-Refreshing-Glow.jpg" alt="3-Refreshing-Glow" />
             <button class="wishlist-btn" title="Shto në listën e dëshirave">
@@ -456,10 +587,15 @@
           </div>
           <h3>Refreshing Glow</h3>
           <p>10.50€</p>
-          <button class="add-to-cart-btn">Shto në shportë</button>
+          <button class="check-details-btn">Shiko detajet</button>
         </div>
 
-        <div class="product-card" onclick="goToProductPage('Dewy Glow')">
+        <div
+          class="product-card"
+          onclick="goToProductPage('Dewy Glow')"
+          data-product="Dewy Glow"
+          draggable="true"
+        >
           <div class="image-container">
             <img src="/img/4-Dewy-Glow.jpg" alt="4-Dewy-Glow" />
             <button class="wishlist-btn" title="Shto në listën e dëshirave">
@@ -468,7 +604,7 @@
           </div>
           <h3>Dewy Glow</h3>
           <p>10.50€</p>
-          <button class="add-to-cart-btn">Shto në shportë</button>
+          <button class="check-details-btn">Shiko detajet</button>
         </div>
       </div>
     </section>
@@ -477,7 +613,12 @@
     <section class="products" id="makeup">
       <h2>Makeup</h2>
       <div class="product-grid">
-        <div class="product-card" onclick="goToProductPage('Natural Glow')">
+        <div
+          class="product-card"
+          onclick="goToProductPage('Natural Glow')"
+          data-product="Natural Glow"
+          draggable="true"
+        >
           <div class="image-container">
             <img src="/img/1-Natural-Glow.jpg" alt="natural-glow" />
             <button class="wishlist-btn" title="Shto në listën e dëshirave">
@@ -486,10 +627,15 @@
           </div>
           <h3>Natural Glow</h3>
           <p>10.50€</p>
-          <button class="add-to-cart-btn">Shto në shportë</button>
+          <button class="check-details-btn">Shiko detajet</button>
         </div>
 
-        <div class="product-card" onclick="goToProductPage('Golden glow')">
+        <div
+          class="product-card"
+          onclick="goToProductPage('Golden glow')"
+          data-product="Golden Glow"
+          draggable="true"
+        >
           <div class="image-container">
             <img src="/img/10-Golden-Glow.jpg" alt="golden-glow" />
             <button class="wishlist-btn" title="Shto në listën e dëshirave">
@@ -498,10 +644,15 @@
           </div>
           <h3>Golden Glow</h3>
           <p>10.50€</p>
-          <button class="add-to-cart-btn">Shto në shportë</button>
+          <button class="check-details-btn">Shiko detajet</button>
         </div>
 
-        <div class="product-card" onclick="goToProductPage('Refreshing Glow')">
+        <div
+          class="product-card"
+          onclick="goToProductPage('Refreshing Glow')"
+          data-product="Refreshing Glow"
+          draggable="true"
+        >
           <div class="image-container">
             <img src="/img/3-Refreshing-Glow.jpg" alt="3-Refreshing-Glow" />
             <button class="wishlist-btn" title="Shto në listën e dëshirave">
@@ -510,10 +661,15 @@
           </div>
           <h3>Refreshing Glow</h3>
           <p>10.50€</p>
-          <button class="add-to-cart-btn">Shto në shportë</button>
+          <button class="check-details-btn">Shiko detajet</button>
         </div>
 
-        <div class="product-card" onclick="goToProductPage('Dewy Glow')">
+        <div
+          class="product-card"
+          onclick="goToProductPage('Dewy Glow')"
+          data-product="Dewy Glow"
+          draggable="true"
+        >
           <div class="image-container">
             <img src="/img/4-Dewy-Glow.jpg" alt="4-Dewy-Glow" />
             <button class="wishlist-btn" title="Shto në listën e dëshirave">
@@ -522,7 +678,7 @@
           </div>
           <h3>Dewy Glow</h3>
           <p>10.50€</p>
-          <button class="add-to-cart-btn">Shto në shportë</button>
+          <button class="check-details-btn">Shiko detajet</button>
         </div>
       </div>
     </section>
@@ -531,7 +687,12 @@
     <section class="products" id="bodycare">
       <h2>Bodycare</h2>
       <div class="product-grid">
-        <div class="product-card" onclick="goToProductPage('Natural Glow')">
+        <div
+          class="product-card"
+          onclick="goToProductPage('Natural Glow')"
+          data-product="Natural Glow"
+          draggable="true"
+        >
           <div class="image-container">
             <img src="/img/1-Natural-Glow.jpg" alt="natural-glow" />
             <button class="wishlist-btn" title="Shto në listën e dëshirave">
@@ -540,10 +701,15 @@
           </div>
           <h3>Natural Glow</h3>
           <p>10.50€</p>
-          <button class="add-to-cart-btn">Shto në shportë</button>
+          <button class="check-details-btn">Shiko detajet</button>
         </div>
 
-        <div class="product-card" onclick="goToProductPage('Golden glow')">
+        <div
+          class="product-card"
+          onclick="goToProductPage('Golden glow')"
+          data-product="Golden Glow"
+          draggable="true"
+        >
           <div class="image-container">
             <img src="/img/10-Golden-Glow.jpg" alt="golden-glow" />
             <button class="wishlist-btn" title="Shto në listën e dëshirave">
@@ -552,10 +718,15 @@
           </div>
           <h3>Golden Glow</h3>
           <p>10.50€</p>
-          <button class="add-to-cart-btn">Shto në shportë</button>
+          <button class="check-details-btn">Shiko detajet</button>
         </div>
 
-        <div class="product-card" onclick="goToProductPage('Refreshing Glow')">
+        <div
+          class="product-card"
+          onclick="goToProductPage('Refreshing Glow')"
+          data-product="Refreshing Glow"
+          draggable="true"
+        >
           <div class="image-container">
             <img src="/img/3-Refreshing-Glow.jpg" alt="3-Refreshing-Glow" />
             <button class="wishlist-btn" title="Shto në listën e dëshirave">
@@ -564,10 +735,15 @@
           </div>
           <h3>Refreshing Glow</h3>
           <p>10.50€</p>
-          <button class="add-to-cart-btn">Shto në shportë</button>
+          <button class="check-details-btn">Shiko detajet</button>
         </div>
 
-        <div class="product-card" onclick="goToProductPage('Dewy Glow')">
+        <div
+          class="product-card"
+          onclick="goToProductPage('Dewy Glow')"
+          data-product="Dewy Glow"
+          draggable="true"
+        >
           <div class="image-container">
             <img src="/img/4-Dewy-Glow.jpg" alt="4-Dewy-Glow" />
             <button class="wishlist-btn" title="Shto në listën e dëshirave">
@@ -576,13 +752,50 @@
           </div>
           <h3>Dewy Glow</h3>
           <p>10.50€</p>
-          <button class="add-to-cart-btn">Shto në shportë</button>
+          <button class="check-details-btn">Shiko detajet</button>
         </div>
       </div>
     </section>
-
+    <section class="products" align="center" style="padding-bottom: 12px">
+      <h2>Lista e dëshirave</h2>
+      <div id="wishlist">Shto produkte ketu</div>
+      <button id="clearWishlist" class="clear-wishlist-btn">
+        Pastro listen
+      </button>
+    </section>
     <!-- Footer -->
     <footer>
+      <div class="footer-svg-container">
+        <!-- rreth -->
+        <svg
+          width="150"
+          height="150"
+          style="left: 10%; top: 30%; position: absolute"
+        >
+          <circle cx="75" cy="75" r="70" fill="#ff6699" />
+        </svg>
+        <!-- drejtkendesh -->
+        <svg
+          width="200"
+          height="200"
+          style="
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            position: absolute;
+          "
+        >
+          <rect x="25" y="25" width="150" height="150" fill="#e60073" />
+        </svg>
+        <!-- trekendesh -->
+        <svg
+          width="200"
+          height="200"
+          style="right: 10%; top: 10%; position: absolute"
+        >
+          <polygon points="100,10 40,190 190,190" fill="#fff" />
+        </svg>
+      </div>
       <p>
         &copy; 2024 Beauty Shop | <a href="/contact-us.html">Na kontaktoni</a>
       </p>
@@ -590,6 +803,89 @@
   </body>
 
   <script>
+    const draggables = document.querySelectorAll(".product-card");
+    const wishlistBtns = document.querySelectorAll(".wishlist-btn");
+    const wishlist = document.getElementById("wishlist");
+
+    function createPreviewElement(productName) {
+      const preview = document.createElement("div");
+      preview.textContent = productName;
+      preview.classList.add("wishlist-preview");
+      return preview;
+    }
+
+    function saveWishlist(item) {
+      let wishlistItems =
+        JSON.parse(localStorage.getItem("wishlistItems")) || [];
+      if (!wishlistItems.includes(item)) {
+        wishlistItems.push(item);
+        localStorage.setItem("wishlistItems", JSON.stringify(wishlistItems));
+      }
+    }
+
+    function loadWishlist() {
+      const wishlistItems =
+        JSON.parse(localStorage.getItem("wishlistItems")) || [];
+      wishlist.innerHTML = "";
+      if (wishlistItems.length === 0) {
+        wishlist.textContent = "Shto produkte ketu";
+      } else {
+        wishlistItems.forEach((item) => {
+          const productEntry = createPreviewElement(item);
+          wishlist.appendChild(productEntry);
+        });
+      }
+    }
+
+    document.getElementById("clearWishlist").addEventListener("click", () => {
+      localStorage.removeItem("wishlistItems");
+      loadWishlist();
+    });
+
+    wishlistBtns.forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation(); // Prevent triggering parent card's click event
+        const productName = btn
+          .closest(".product-card")
+          .getAttribute("data-product");
+        saveWishlist(productName);
+        loadWishlist();
+      });
+    });
+
+    draggables.forEach((item) => {
+      item.addEventListener("dragstart", () => {
+        item.classList.add("dragging");
+      });
+
+      item.addEventListener("dragend", () => {
+        item.classList.remove("dragging");
+      });
+    });
+
+    wishlist.addEventListener("dragover", (e) => {
+      e.preventDefault();
+      wishlist.classList.add("dragover");
+    });
+
+    wishlist.addEventListener("dragleave", () => {
+      wishlist.classList.remove("dragover");
+    });
+
+    wishlist.addEventListener("drop", (e) => {
+      e.preventDefault();
+      wishlist.classList.remove("dragover");
+
+      const draggedItem = document.querySelector(".dragging");
+      if (draggedItem) {
+        const productName = draggedItem.getAttribute("data-product");
+        saveWishlist(productName);
+        loadWishlist();
+      }
+    });
+
+    window.addEventListener("DOMContentLoaded", loadWishlist);
+
     function scrollToSection(sectionId) {
       const section = document.getElementById(sectionId);
       const headerOffset = document.querySelector("header").offsetHeight;
