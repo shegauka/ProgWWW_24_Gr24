@@ -12,60 +12,6 @@
         margin: 0;
         padding: 0;
       }
-      header {
-        position: sticky;
-        top: 0;
-        width: 100%;
-        z-index: 1000;
-        height: 100px;
-        display: flex;
-        align-items: center;
-        background-color: transparent;
-      }
-
-      #headerCanvas {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100px;
-        z-index: -1;
-      }
-
-      .nav-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
-      }
-
-      h1 {
-        font-size: 1.5rem;
-        margin: 0;
-        color: #fff;
-      }
-
-      .header-link {
-        text-decoration: none;
-        color: #ffccd5;
-      }
-      .header-link:active {
-        color: #ffccd5;
-        text-decoration: none;
-      }
-      .header-link:hover {
-        text-decoration: none;
-        cursor: pointer;
-      }
-
-      .header-link:visited {
-        color: #ffccd5;
-        text-decoration: none;
-      }
-
       .container {
         max-width: 400px;
         margin: 50px auto;
@@ -110,6 +56,7 @@
         background-color: #e60073;
       }
     </style>
+    <link rel="stylesheet" href="headerandfooter.css">
   </head>
   <body>
     <header>
@@ -176,7 +123,44 @@
         <input type="submit" value="Regjistrohu" />
       </form>
     </div>
+    <footer>
+      <div class="footer-svg-container">
+        <!-- rreth -->
+        <svg
+          width="150"
+          height="150"
+          style="left: 10%; top: 30%; position: absolute"
+        >
+          <circle cx="75" cy="75" r="70" fill="#ff6699" />
+        </svg>
+        <!-- drejtkendesh -->
+        <svg
+          width="200"
+          height="200"
+          style="
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            position: absolute;
+          "
+        >
+          <rect x="25" y="25" width="150" height="150" fill="#e60073" />
+        </svg>
+        <!-- trekendesh -->
+        <svg
+          width="200"
+          height="200"
+          style="right: 10%; top: 10%; position: absolute"
+        >
+          <polygon points="100,10 40,190 190,190" fill="#fff" />
+        </svg>
+      </div>
+      <p>
+        &copy; 2024 Beauty Shop | <a href="/contact-us.html">Na kontaktoni</a>
+      </p>
+    </footer>
 
+  </body>
     <script>
       const form = document.getElementById("signupForm");
 
@@ -194,45 +178,6 @@
           window.location.href = "/log-in.html";
         }
       });
-
-      const canvas = document.getElementById("headerCanvas");
-      const ctx = canvas.getContext("2d");
-
-      function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = 100;
-        drawCanvas();
-      }
-
-      function drawCanvas() {
-        const gradient = ctx.createLinearGradient(
-          0,
-          0,
-          canvas.width,
-          canvas.height
-        );
-        gradient.addColorStop(0, "#ff6699");
-        gradient.addColorStop(1, "#ffccd5");
-
-        ctx.fillStyle = gradient;
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        for (let i = 0; i < 20; i++) {
-          ctx.beginPath();
-          ctx.arc(
-            Math.random() * canvas.width,
-            Math.random() * canvas.height,
-            Math.random() * 10,
-            0,
-            Math.PI * 2
-          );
-          ctx.fillStyle = `rgba(255, 255, 255, ${Math.random() * 0.5 + 0.2})`;
-          ctx.fill();
-        }
-      }
-
-      window.addEventListener("resize", resizeCanvas);
-      resizeCanvas();
     </script>
-  </body>
+    <script src="canvas.js"></script>
 </html>

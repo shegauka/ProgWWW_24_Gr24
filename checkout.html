@@ -13,13 +13,6 @@
       overflow-x: hidden;
     }
 
-    header {
-      background-color: #e60073;
-      color: #fff;
-      padding: 10px;
-      text-align: center;
-    }
-
     main {
       max-width: 800px;
       margin: 20px auto;
@@ -128,10 +121,23 @@
       outline-offset: 5px;
     }
   </style>
+  <link rel="stylesheet" href="headerandfooter.css">
 </head>
 <body>
   <header>
-    <h1>Checkout</h1>
+    <canvas id="headerCanvas"></canvas>
+    <nav class="nav-container">
+      <h1><a class="header-link" href="/index.html">Beauty Shop</a></h1>
+      <ul>
+        <li><a href="/contact-us.html">Kontakti</a></li>
+        <li><a href="/about-us.html">Rreth nesh</a></li>
+      </ul>
+      <a class="header-link" href="/sign-up.html"
+        ><button id="signupBtn">
+          <span class="signup-icon">&#128100;</span> Llogaria
+        </button></a
+      >
+    </nav>
   </header>
   <main>
     <form style="padding-right: 8px;" id="checkoutForm">
@@ -172,6 +178,43 @@
       <button style="margin-top: 4px;" type="submit">Konfirmo porosinë</button>
     </form>
   </main>
-  <script src="/checkout.js"></script>
+  <footer>
+    <div class="footer-svg-container">
+      <!-- rreth -->
+      <svg
+        width="150"
+        height="150"
+        style="left: 10%; top: 30%; position: absolute"
+      >
+        <circle cx="75" cy="75" r="70" fill="#ff6699" />
+      </svg>
+      <!-- drejtkendesh -->
+      <svg
+        width="200"
+        height="200"
+        style="
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          position: absolute;
+        "
+      >
+        <rect x="25" y="25" width="150" height="150" fill="#e60073" />
+      </svg>
+      <!-- trekendesh -->
+      <svg
+        width="200"
+        height="200"
+        style="right: 10%; top: 10%; position: absolute"
+      >
+        <polygon points="100,10 40,190 190,190" fill="#fff" />
+      </svg>
+    </div>
+    <p>
+      &copy; 2024 Beauty Shop | <a href="/contact-us.html">Na kontaktoni</a>
+    </p>
+  </footer>
 </body>
+<script src="/checkout.js"></script>
+<script src="canvas.js"></script>
 </html>

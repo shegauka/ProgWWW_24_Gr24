@@ -1,205 +1,282 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rreth nesh</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Verdana, Geneva, Tahoma, sans-serif;
-      color: #333;
-      background-color: #fcfcfc;
-    }
-
-    header, footer {
-      background-color: #ff6699;
-      color: white;
-      text-align: center;
-      padding: 20px;
-    }
-
-    .about-section {
-      max-width: 1200px;
-      margin: 20px auto;
-      padding: 20px;
-      background: #fff;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      border-radius: 10px;
-    }
-
-    .about-section h1 {
-      text-align: center;
-      color: #ff6699;
-    }
-
-    .about-section p {
-      line-height: 1.6;
-      text-align: justify;
-    }
-
-    .team-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      margin-top: 30px;
-    }
-
-    .team-member {
-      background: #ffccd5;
-      border: 1px solid #ff6699;
-      border-radius: 10px;
-      text-align: center;
-      padding: 20px;
-      width: 250px;
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.3s ease;
-    }
-
-    .team-member:hover {
-      transform: scale(1.05);
-    }
-
-    .team-member img {
-      width: 100%;
-      height: auto;
-      border-radius: 50%;
-      margin-bottom: 15px;
-    }
-
-    .team-member h3 {
-      margin: 10px 0 5px;
-      color: #333;
-    }
-
-    .team-member p {
-      font-size: 0.9rem;
-      color: #555;
-    }
-
-    .details-btn {
-      position: absolute;
-      bottom: -50px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #ff6699;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-      cursor: pointer;
-      opacity: 0;
-      transition: all 0.3s ease;
-    }
-
-    .team-member:hover .details-btn {
-      bottom: 20px;
-      opacity: 1;
-    }
-
-    .scroll-top-btn {
-      display: none;
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #ff6699;
-      color: white;
-      border: none;
-      border-radius: 50%;
-      padding: 15px;
-      cursor: pointer;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    }
-
-    .scroll-top-btn:hover {
-      background-color: #e60073;
-    }
-  </style>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-</head>
-<body>
-
-<header>
-  <h1>Rreth nesh</h1>
-</header>
-
-<section class="about-section">
-  <h1>Mirë se vini në Beauty Shop</h1>
-  <p class="description">
-    Beauty Shop është destinacioni juaj i vetëm për të gjitha gjërat e bukurisë. Nga kujdesi për lëkurën tek grimi dhe kujdesi për trupin, ne ofrojmë produkte me cilësi të lartë të kuruara për të përmirësuar bukurinë tuaj natyrale. I themeluar në vitin 2024, misioni ynë është të fuqizojmë individët që të ndihen të sigurt dhe rrezatues në lëkurën e tyre.
-  </p>
-  <p class="description">
-    Në Beauty Shop, ne jemi të pasionuar për të ofruar përvojën më të mirë të klientit me produkte të përshtatura për nevoja të ndryshme. Bashkohuni me ne për të festuar bukurinë që frymëzon.
-  </p>
-
-  <div class="team-container">
-    <div class="team-member">
-      <img src="/img/CEO.jpg" alt="CEO">
-      <h3>Shega Uka</h3>
-      <p>CEO</p>
-      <button class="details-btn" data-name="Jane Doe" data-role="CEO">Details</button>
-    </div>
-    <div class="team-member">
-      <img src="/img/menaxhere.jpg" alt="Menaxhere">
-      <h3>Elmira Selimi</h3>
-      <p>Menaxhere</p>
-      <button class="details-btn" data-name="Elmira Selimi" data-role="Menaxhere">Details</button>
-    </div>
-    <div class="team-member">
-      <img src="/img/kontabilistfinanciar.jpg" alt="Kontabilist financiar">
-      <h3>Dardan Shabani</h3>
-      <p>Kontabilist financiar</p>
-      <button class="details-btn" data-name="Dardan Shabani" data-role="Kontabilist financiar">Details</button>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <p>&copy; 2024 Beauty Shop | <a href="/contact.html" style="color: white;">Na kontaktoni</a></p>
-</footer>
-
-<button class="scroll-top-btn">↑</button>
-
-<script>
-  $(document).ready(function() {
-    $('.details-btn').click(function() {
-      const name = $(this).data('name');
-      const role = $(this).data('role');
-      alert(`${name} is our ${role}`);
-    });
-
-    $('.description').hide().fadeIn(1500);
-
-    $('.team-member').hide();
-    $('.team-member').each(function(index) {
-      $(this).delay(300 * index).slideDown(1000); 
-    });
-
-    const $scrollTopBtn = $('.scroll-top-btn');
-    $(window).scroll(function() {
-      if ($(this).scrollTop() > 200) {
-        $scrollTopBtn.fadeIn();
-      } else {
-        $scrollTopBtn.fadeOut();
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rreth nesh</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        color: #333;
+        background-color: #fcfcfc;
       }
-    });
 
-    $scrollTopBtn.click(function() {
-      $('html, body').animate({ scrollTop: 0 }, 600);
-    });
-
-    $('header').hover(
-      function() {
-        $(this).animate({ backgroundColor: '#e60073', padding: '30px' }, 500);
-      },
-      function() {
-        $(this).animate({ backgroundColor: '#ff6699', padding: '20px' }, 500);
+      footer {
+        background-color: #ff6699;
+        color: white;
+        text-align: center;
+        padding: 20px;
       }
-    );
-  });
-</script>
 
-</body>
+      .about-section {
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 20px;
+        background: #fff;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+      }
+
+      .about-section h1 {
+        text-align: center;
+        color: #ff6699;
+      }
+
+      .about-section p {
+        line-height: 1.6;
+        text-align: justify;
+      }
+
+      .team-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 30px;
+      }
+
+      .team-member {
+        background: #ffccd5;
+        border: 1px solid #ff6699;
+        border-radius: 10px;
+        text-align: center;
+        padding: 20px;
+        width: 250px;
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+      }
+
+      .team-member:hover {
+        transform: scale(1.05);
+      }
+
+      .team-member img {
+        width: 100%;
+        height: auto;
+        border-radius: 50%;
+        margin-bottom: 15px;
+      }
+
+      .team-member h3 {
+        margin: 10px 0 5px;
+        color: #333;
+      }
+
+      .team-member p {
+        font-size: 0.9rem;
+        color: #555;
+      }
+
+      .details-btn {
+        position: absolute;
+        bottom: -50px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #ff6699;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        opacity: 0;
+        transition: all 0.3s ease;
+      }
+
+      .team-member:hover .details-btn {
+        bottom: 20px;
+        opacity: 1;
+      }
+
+      .scroll-top-btn {
+        display: none;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #ff6699;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        padding: 15px;
+        cursor: pointer;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      }
+
+      .scroll-top-btn:hover {
+        background-color: #e60073;
+      }
+    </style>
+    <link rel="stylesheet" href="headerandfooter.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <header>
+      <canvas id="headerCanvas"></canvas>
+      <nav class="nav-container">
+        <h1><a class="header-link" href="/index.html">Beauty Shop</a></h1>
+        <ul>
+          <li><a href="/contact-us.html">Kontakti</a></li>
+          <li><a href="/about-us.html">Rreth nesh</a></li>
+        </ul>
+        <a class="header-link" href="/sign-up.html"
+          ><button id="signupBtn">
+            <span class="signup-icon">&#128100;</span> Llogaria
+          </button></a
+        >
+      </nav>
+    </header>
+
+    <section class="about-section">
+      <h1>Mirë se vini në Beauty Shop</h1>
+      <p class="description">
+        Beauty Shop është destinacioni juaj i vetëm për të gjitha gjërat e
+        bukurisë. Nga kujdesi për lëkurën tek grimi dhe kujdesi për trupin, ne
+        ofrojmë produkte me cilësi të lartë të kuruara për të përmirësuar
+        bukurinë tuaj natyrale. I themeluar në vitin 2024, misioni ynë është të
+        fuqizojmë individët që të ndihen të sigurt dhe rrezatues në lëkurën e
+        tyre.
+      </p>
+      <p class="description">
+        Në Beauty Shop, ne jemi të pasionuar për të ofruar përvojën më të mirë
+        të klientit me produkte të përshtatura për nevoja të ndryshme.
+        Bashkohuni me ne për të festuar bukurinë që frymëzon.
+      </p>
+
+      <div class="team-container">
+        <div class="team-member">
+          <img src="/img/CEO.jpg" alt="CEO" />
+          <h3>Shega Uka</h3>
+          <p>CEO</p>
+          <button class="details-btn" data-name="Shega Uka" data-role="CEO">
+            Details
+          </button>
+        </div>
+        <div class="team-member">
+          <img src="/img/menaxhere.jpg" alt="Menaxhere" />
+          <h3>Elmira Selimi</h3>
+          <p>Menaxhere</p>
+          <button
+            class="details-btn"
+            data-name="Elmira Selimi"
+            data-role="Menaxhere"
+          >
+            Details
+          </button>
+        </div>
+        <div class="team-member">
+          <img
+            src="/img/kontabilistfinanciar.jpg"
+            alt="Kontabilist financiar"
+          />
+          <h3>Dardan Shabani</h3>
+          <p>Kontabilist financiar</p>
+          <button
+            class="details-btn"
+            data-name="Dardan Shabani"
+            data-role="Kontabilist financiar"
+          >
+            Details
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-svg-container">
+        <!-- rreth -->
+        <svg
+          width="150"
+          height="150"
+          style="left: 10%; top: 30%; position: absolute"
+        >
+          <circle cx="75" cy="75" r="70" fill="#ff6699" />
+        </svg>
+        <!-- drejtkendesh -->
+        <svg
+          width="200"
+          height="200"
+          style="
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            position: absolute;
+          "
+        >
+          <rect x="25" y="25" width="150" height="150" fill="#e60073" />
+        </svg>
+        <!-- trekendesh -->
+        <svg
+          width="200"
+          height="200"
+          style="right: 10%; top: 10%; position: absolute"
+        >
+          <polygon points="100,10 40,190 190,190" fill="#fff" />
+        </svg>
+      </div>
+      <p>
+        &copy; 2024 Beauty Shop | <a href="/contact-us.html">Na kontaktoni</a>
+      </p>
+    </footer>
+
+    <button class="scroll-top-btn">↑</button>
+
+    <script>
+      $(document).ready(function () {
+        $(".details-btn").click(function () {
+          const name = $(this).data("name");
+          const role = $(this).data("role");
+          alert(`${name} is our ${role}`);
+        });
+
+        $(".description").hide().fadeIn(1500);
+
+        $(".team-member").hide();
+        $(".team-member").each(function (index) {
+          $(this)
+            .delay(300 * index)
+            .slideDown(1000);
+        });
+
+        const $scrollTopBtn = $(".scroll-top-btn");
+        $(window).scroll(function () {
+          if ($(this).scrollTop() > 200) {
+            $scrollTopBtn.fadeIn();
+          } else {
+            $scrollTopBtn.fadeOut();
+          }
+        });
+
+        $scrollTopBtn.click(function () {
+          $("html, body").animate({ scrollTop: 0 }, 600);
+        });
+
+        $("header").hover(
+          function () {
+            $(this).animate(
+              { backgroundColor: "#e60073", padding: "5px" },
+              500
+            );
+          },
+          function () {
+            $(this).animate(
+              { backgroundColor: "#ff6699", padding: "10px" },
+              500
+            );
+          }
+        );
+      });
+    </script>
+    <script src="canvas.js"></script>
+  </body>
 </html>

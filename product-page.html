@@ -12,60 +12,6 @@
         background-color: #f9f9f9;
         color: #333;
       }
-      header {
-        position: sticky;
-        top: 0;
-        width: 100%;
-        z-index: 1000;
-        height: 100px;
-        display: flex;
-        align-items: center;
-        background-color: transparent;
-      }
-
-      #headerCanvas {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100px;
-        z-index: -1;
-      }
-
-      .nav-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
-      }
-
-      h1 {
-        font-size: 1.5rem;
-        margin: 0;
-        color: #fff;
-      }
-
-      .header-link {
-        text-decoration: none;
-        color: #ffccd5;
-      }
-      .header-link:active {
-        color: #ffccd5;
-        text-decoration: none;
-      }
-      .header-link:hover {
-        text-decoration: none;
-        cursor: pointer;
-      }
-
-      .header-link:visited {
-        color: #ffccd5;
-        text-decoration: none;
-      }
-
       ul {
         display: flex;
         list-style: none;
@@ -273,6 +219,7 @@
         background-color: #ffccd5;
       }
     </style>
+    <link rel="stylesheet" href="headerandfooter.css">
   </head>
   <body>
     <header>
@@ -280,13 +227,14 @@
       <nav class="nav-container">
         <h1><a class="header-link" href="/index.html">Beauty Shop</a></h1>
         <ul>
-          <li><a href="#products">Produktet</a></li>
           <li><a href="/contact-us.html">Kontakti</a></li>
           <li><a href="/about-us.html">Rreth nesh</a></li>
         </ul>
-        <button id="signupBtn">
-          <span class="signup-icon">&#128100;</span> Kycu
-        </button>
+        <a class="header-link" href="/sign-up.html"
+          ><button id="signupBtn">
+            <span class="signup-icon">&#128100;</span> Llogaria
+          </button></a
+        >
       </nav>
     </header>
     <main>
@@ -424,8 +372,44 @@
           </tbody>
         </table>
       </section>
+      <section id="location-info" style="text-align: center; margin: 20px;">
+        <h2>Gjeje dyqanin me te afert</h2>
+        <p id="geo-status">Lokacioni juaj eshte duke u procesuar...</p>
+        <b id="geo-location" style="color: #ff6699;"></b>
+      </section>
     </main>
     <footer>
+      <div class="footer-svg-container">
+        <!-- rreth -->
+        <svg
+          width="150"
+          height="150"
+          style="left: 10%; top: 30%; position: absolute"
+        >
+          <circle cx="75" cy="75" r="70" fill="#ff6699" />
+        </svg>
+        <!-- drejtkendesh -->
+        <svg
+          width="200"
+          height="200"
+          style="
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            position: absolute;
+          "
+        >
+          <rect x="25" y="25" width="150" height="150" fill="#e60073" />
+        </svg>
+        <!-- trekendesh -->
+        <svg
+          width="200"
+          height="200"
+          style="right: 10%; top: 10%; position: absolute"
+        >
+          <polygon points="100,10 40,190 190,190" fill="#fff" />
+        </svg>
+      </div>
       <p>
         &copy; 2024 Beauty Shop | <a href="/contact-us.html">Na kontaktoni</a>
       </p>
@@ -465,43 +449,55 @@
         }
       });
 
-    const canvas = document.getElementById("headerCanvas");
-    const ctx = canvas.getContext("2d");
+      function fetchLocation() {
+    const geoStatus = document.getElementById("geo-status");
+    const geoLocation = document.getElementById("geo-location");
 
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = 100;
-      drawCanvas();
-    }
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
 
-    function drawCanvas() {
-      const gradient = ctx.createLinearGradient(
-        0,
-        0,
-        canvas.width,
-        canvas.height
+          geoStatus.textContent = "Lokacioni u gjet me sukses!";
+          geoLocation.textContent = `Lokacioni juaj: Latitude ${latitude.toFixed(
+            2
+          )}, Longitude ${longitude.toFixed(2)}`;
+
+          const stores = [
+            { name: "Beauty Shop 1", lat: 40.73061, lon: -73.935242 },
+            { name: "Beauty Shop 2", lat: 34.052235, lon: -118.243683 },
+          ];
+          const closestStore = findClosestStore(latitude, longitude, stores);
+          geoLocation.innerHTML += `<br>Dyqani me i afert qe keni sipas lokacionit tuaj eshte: ${closestStore.name}`;
+        },
+        (error) => {
+          geoStatus.textContent = "Nuk mund ta marrim lokacionin tuaj";
+          geoLocation.textContent = `Error: ${error.message}`;
+        }
       );
-      gradient.addColorStop(0, "#ff6699");
-      gradient.addColorStop(1, "#ffccd5");
-
-      ctx.fillStyle = gradient;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      for (let i = 0; i < 20; i++) {
-        ctx.beginPath();
-        ctx.arc(
-          Math.random() * canvas.width,
-          Math.random() * canvas.height,
-          Math.random() * 10,
-          0,
-          Math.PI * 2
-        );
-        ctx.fillStyle = `rgba(255, 255, 255, ${Math.random() * 0.5 + 0.2})`;
-        ctx.fill();
-      }
+    } else {
+      geoStatus.textContent = "Geolocation nuk suportohet nga browser i juaj";
     }
+  }
 
-    window.addEventListener("resize", resizeCanvas);
-    resizeCanvas();
+  function findClosestStore(userLat, userLon, stores) {
+    let closest = null;
+    let minDistance = Infinity;
+
+    stores.forEach((store) => {
+      const distance = Math.sqrt(
+        Math.pow(store.lat - userLat, 2) + Math.pow(store.lon - userLon, 2)
+      );
+      if (distance < minDistance) {
+        closest = store;
+        minDistance = distance;
+      }
+    });
+
+    return closest;
+  }
+
+  window.addEventListener("load", fetchLocation);
   </script>
+  <script src="canvas.js"></script>
 </html>
