@@ -105,7 +105,7 @@
         {
           name: "Gloss Bomb Heat Universal Lip Luminizer + Plumper",
           price: 18.95,
-          image: "Produkti-1-M",
+          image: "/img/product-img/Produkti-1-M.jpg",
           category: "Makeup",
           description: "Shkëlqyes buzësh hibrid dhe volumizues...",
           sales: 300,
@@ -113,7 +113,7 @@
         {
           name: "Soft Pinch Liquid Blush",
           price: 16.5,
-          image: "Produkti-2-M",
+          image: "/img/product-img/Produkti-2-M.webp",
           category: "Makeup",
           description: "Një blush i lëngshëm, i lehtë...",
           sales: 350,
@@ -121,7 +121,7 @@
         {
           name: "Peptide Lip Tint",
           price: 13.75,
-          image: "Produkti-3-M",
+          image: "/img/product-img/Produkti-3-M.webp",
           category: "Makeup",
           description: "Ngjyrë e lehtë, por e shtresueshme...",
           sales: 250,
@@ -129,7 +129,7 @@
         {
           name: "Pocket Blush",
           price: 11.5,
-          image: "Produkti-4-M",
+          image: "/img/product-img/Produkti-4-M.webp",
           category: "Makeup",
           description: "Blushi ynë kremoz, i përshtatshëm për në lëvizje...",
           sales: 240,
@@ -137,7 +137,7 @@
         {
           name: "Barrier Butter",
           price: 25.0,
-          image: "Produkti-1-S",
+          image: "/img/product-img/Produkti-1-S.webp",
           category: "Skincare",
           description:
             "Një balsam intensiv hidratues për një lagështi të thellë...",
@@ -146,7 +146,7 @@
         {
           name: "Hydra Vizor Invisible Moisturizer",
           price: 27.95,
-          image: "Produkti-2-S",
+          image: "/img/product-img/Produkti-2-S.webp",
           category: "Skincare",
           description: "Hidratues i padukshëm me SPF 30...",
           sales: 100,
@@ -154,7 +154,7 @@
         {
           name: "Instant Reset Brightening Overnight Gel-Cream",
           price: 30.0,
-          image: "Produkti-3-S",
+          image: "/img/product-img/Produkti-3-S.webp",
           category: "Skincare",
           description: "Hidratuesi i rimbushshëm ofron pore të lëmuara...",
           sales: 120,
@@ -162,7 +162,7 @@
         {
           name: "Flash Nap Instant Revival Eye Gel-Cream",
           price: 25.0,
-          image: "Produkti-4-S",
+          image: "/img/product-img/Produkti-4-S.webp",
           category: "Skincare",
           description: "Krem për sytë që ndriçon dhe zgjidh sytë e lodhur...",
           sales: 130,
@@ -170,7 +170,7 @@
         {
           name: "Find Comfort Gentle Exfoliating Body Wash",
           price: 24.0,
-          image: "Produkti-1-B",
+          image: "/img/product-img/Produkti-1-B.webp",
           category: "Bodycare",
           description:
             "Një xhel dushi rigjallërues për përdorim të përditshëm...",
@@ -179,7 +179,7 @@
         {
           name: "Xhel dushi me vanilje",
           price: 7.5,
-          image: "Produkti-2-B",
+          image: "/img/product-img/Produkti-2-B.webp",
           category: "Bodycare",
           description: "Xhel dushi pa sulfate dhe pa ngjyrues...",
           sales: 400,
@@ -187,7 +187,7 @@
         {
           name: "Krem duarsh Mango",
           price: 3.5,
-          image: "Produkti-3-B",
+          image: "/img/product-img/Produkti-3-B.jpg",
           category: "Bodycare",
           description: "Kënaqësia e një kremi hidratues duarsh...",
           sales: 500,
@@ -195,19 +195,31 @@
         {
           name: "Qumësht trupi me orkide vanilje",
           price: 11.5,
-          image: "Produkti-4-B",
+          image: "/img/product-img/Produkti-4-B.webp",
           category: "Bodycare",
           description: "Lëkurë e hidratuar dhe me aromë të veçantë...",
           sales: 300,
         },
       ];
 
+      const sortWorker = new Worker("sortWorker.js");
+
+      sortWorker.onmessage = function (event) {
+        const sortedProducts = event.data;
+        renderProducts(sortedProducts);
+      };
+
+      function sortProducts(criteria) {
+        sortWorker.postMessage({ products, criteria });
+      }
+
       function renderProducts(productList) {
+        const productContainer = document.getElementById("productContainer");
         productContainer.innerHTML = productList
           .map(
             (product, index) => `
     <div class="product-card" data-id="${index}" onclick="goToProduct(${index})">
-      <img width="16px" height="16px" src="${product.image}.jpg" alt="${product.name}">
+      <img src="${product.image}" alt="${product.name}">
       <b>${product.name}</b>
       <p>${product.description}</p>
       <p><strong>Cmimi:</strong><u>${product.price}€</u></p>
