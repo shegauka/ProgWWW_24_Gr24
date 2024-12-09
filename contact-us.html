@@ -154,56 +154,85 @@
                 </div>
             </form>
         </div>
-
-        <!-- Address -->
-        <div class="address">
-            <h2>Adresa jone</h2>
-            <address>
-                <ul class="contact-details">
-                    <li><strong>Lokacioni:</strong> 123 Beauty Lane, Glamor City</li>
-                    <li><strong>Phone:</strong> <a href="tel:+1234567890">+123 456 7890</a></li>
-                    <li><strong>Email:</strong> <a href="mailto:info@beautyshop.com">info@beautyshop.com</a></li>
-                </ul>
-            </address>
-        </div>
     </div>
-    <footer>
+    <div class="address">
+        <h2>Adresa jonë</h2>
+        <address>
+          <ul class="contact-details">
+            <li><strong>Lokacioni:</strong> 123 Beauty Lane, Glamor City</li>
+            <li><strong>Phone:</strong> <a href="tel:+1234567890">+123 456 7890</a></li>
+            <li><strong>Email:</strong> <a href="mailto:info@beautyshop.com">info@beautyshop.com</a></li>
+          </ul>
+        </address>
+      </div>
+      <footer>
         <div class="footer-svg-container">
-          <!-- rreth -->
-          <svg
-            width="150"
-            height="150"
-            style="left: 10%; top: 30%; position: absolute"
-          >
+          <!-- Circle -->
+          <svg width="150" height="150" style="left: 10%; top: 30%; position: absolute">
             <circle cx="75" cy="75" r="70" fill="#ff6699" />
           </svg>
-          <!-- drejtkendesh -->
-          <svg
-            width="200"
-            height="200"
-            style="
-              left: 50%;
-              top: 50%;
-              transform: translate(-50%, -50%);
-              position: absolute;
-            "
-          >
+          <!-- Rectangle -->
+          <svg width="200" height="200" style="left: 50%; top: 50%; transform: translate(-50%, -50%); position: absolute">
             <rect x="25" y="25" width="150" height="150" fill="#e60073" />
           </svg>
-          <!-- trekendesh -->
-          <svg
-            width="200"
-            height="200"
-            style="right: 10%; top: 10%; position: absolute"
-          >
+          <!-- Triangle -->
+          <svg width="200" height="200" style="right: 10%; top: 10%; position: absolute">
             <polygon points="100,10 40,190 190,190" fill="#fff" />
           </svg>
         </div>
-      <p>
-        &copy; 2024 Beauty Shop
-      </p>
+        <p>&copy; 2024 Beauty Shop</p>
       </footer>
-</body>
-<script src="canvas.js"></script>
+    
 
-</html>
+  <script>
+  function Contact(name, email, subject) {
+    this.name = name;
+    this.email = email;
+    this.subject = subject;
+  }
+  
+  const contact1 = new Contact("Shega", "shega@uka.com", "Gjeneral");
+  const contact2 = new Contact("Elmira", "elmira@selimi.com", "Support");
+  const contact3 = new Contact("Ermir", "ermir@rogova.com", "Operations");
+  
+  const largeNumber = Number.MAX_VALUE;
+  const formattedNumber = (123456789).toExponential(2);
+  const isNotNumber = isNaN("Hello");
+  const stringNumber = (99).toString();
+  
+  console.log(largeNumber, formattedNumber, isNotNumber, stringNumber);
+  
+  const feedback = "Servisi ka qene i MREKULLUESHEM dhe i sjellshem.";
+  const keywords = feedback.match(/mrekullueshem|sjellshem/gi); 
+  console.log(keywords);
+  const sanitizedFeedback = feedback.replace(/mrekullueshem/i, "mire");
+  console.log(sanitizedFeedback);
+  
+  const today = new Date();
+  document.querySelector("footer p").innerText += ` | Today: ${today.toDateString()}`;
+  
+  const pi = Math.PI;
+  const random = Math.random();
+  const floorValue = Math.floor(7.89);
+  const ceilValue = Math.ceil(3.14);
+  
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const validEmail = emailRegex.test("test@test.com");
+  console.log(validEmail);
+  
+  const sampleText = "Test test TEST";
+  const globalCaseInsensitiveMatch = sampleText.match(/test/ig);
+  console.log(globalCaseInsensitiveMatch);
+  
+  const phoneRegex = /\d{3}-\d{3}-\d{4}/;
+  const isValidPhone = phoneRegex.test("123-456-7890");
+  console.log(isValidPhone);
+  const phoneMatch = phoneRegex.exec("My number is 123-456-7890");
+  console.log(phoneMatch);
+  
+  console.log(contact1, contact2, contact3);
+  </script>
+  <script src="canvas.js"></script>
+  </body>
+  </html>
+  
