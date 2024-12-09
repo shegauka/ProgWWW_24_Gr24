@@ -119,6 +119,139 @@
       .scroll-top-btn:hover {
         background-color: #e60073;
       }
+      .additional-content {
+        max-width: 1000px;
+        margin: 20px auto;
+        padding: 20px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .additional-content h2 {
+        margin-bottom: 20px;
+      }
+
+      ol {
+        padding-left: 40px;
+        margin: 20px 0;
+      }
+
+      ol li {
+        margin-bottom: 10px;
+        color: #555;
+        font-weight: 500;
+      }
+
+      ul {
+        padding-left: 40px;
+        margin: 20px 0;
+      }
+
+      ul li {
+        margin-bottom: 10px;
+        font-weight: 500;
+        color: #333;
+      }
+
+      ul li ul {
+        margin-top: 10px;
+        padding-left: 20px;
+      }
+
+      ul li ul li {
+        font-size: 0.95rem;
+        color: #555;
+      }
+
+      dl {
+        margin: 20px 0;
+      }
+
+      dt {
+        font-weight: bold;
+        color: #ff6699;
+        margin-top: 15px;
+      }
+
+      dd {
+        margin-left: 20px;
+        color: #555;
+      }
+
+      .faq {
+        background: #f9f9f9;
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      }
+
+      .faq ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .faq ul li {
+        margin-bottom: 15px;
+      }
+
+      .faq ul li ul {
+        margin-top: 10px;
+        padding-left: 20px;
+      }
+
+      .faq ul li ul li {
+        margin-bottom: 10px;
+      }
+
+      .image-alignment {
+        margin: 40px auto;
+        padding: 20px;
+        max-width: 1200px;
+        box-sizing: border-box;
+      }
+
+      .image-alignment h3 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .team-content {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+      }
+
+      .team-content img {
+        width: 150px;
+        height: auto;
+        border-radius: 10px;
+      }
+
+      .team-content p {
+        flex: 1;
+        line-height: 1.6;
+        text-align: justify;
+      }
+
+      @media (max-width: 768px) {
+        .team-content {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .team-content img {
+          margin: 0 auto;
+        }
+
+        .team-content p {
+          text-align: justify;
+          margin-top: 10px;
+        }
+      }
     </style>
     <link rel="stylesheet" href="headerandfooter.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -194,6 +327,83 @@
         </div>
       </div>
     </section>
+    <section class="additional-content">
+      <h2>Misioni, Vizionit dhe Vlerat Tona</h2>
+      <ol>
+        <li>
+          Misioni: Fuqizimi i individëve për të përqafuar bukurinë e tyre
+          natyrale.
+        </li>
+        <li>Vizioni: Të bëhemi lideri global në produktet e bukurisë.</li>
+        <li>Vlerat: Cilësia, Integriteti dhe Klienti në radhë të parë.</li>
+      </ol>
+
+      <h3>Përgjegjësitë e Ekipit</h3>
+      <ul style="list-style-type: circle">
+        <li>CEO: Drejton vizionin dhe strategjinë e kompanisë.</li>
+      </ul>
+      <ul style="list-style-type: square">
+        <li>Menaxheri: Mbikëqyr operacionet dhe siguron shërbim cilësor.</li>
+      </ul>
+      <ul style="list-style-type: disc">
+        <li>Kontabilisti: Menaxhon të dhënat financiare dhe buxhetimin.</li>
+      </ul>
+
+      <h3>Pyetje të Shpeshta (FAQ)</h3>
+      <ul style="display: flex; flex-direction: column">
+        <li>
+          Si mund të kontaktoj me Beauty Shop?
+          <ul style="display: flex; flex-direction: column">
+            <li>Me email: info@beautyshop.com</li>
+            <li>Me telefon: +123 456 7890</li>
+          </ul>
+        </li>
+        <li style="margin-top: 8px">
+          Çfarë mënyrash pagese pranoni?
+          <ul style="display: flex; flex-direction: column">
+            <li>Kartat e Kreditit/Debitit</li>
+            <li>PayPal</li>
+            <li>Stripe</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h3>Definicione</h3>
+      <dl>
+        <dt>Misioni</dt>
+        <dd>
+          Të fuqizojmë individët për të përqafuar bukurinë e tyre natyrale.
+        </dd>
+        <dt>Vizioni</dt>
+        <dd>Të bëhemi lideri më i besuar global në industrinë e bukurisë.</dd>
+        <dt>Vlerat</dt>
+        <dd>
+          Ne e vendosim cilësinë, integritetin dhe kënaqësinë e klientit në
+          radhë të parë.
+        </dd>
+      </dl>
+    </section>
+
+    <section class="image-alignment">
+      <h3>Ekipi në Punë</h3>
+      <div class="team-content">
+        <img src="/img/team-left.jpg" alt="Ekipi në të majtë" />
+        <p>
+          Ekipi ynë punon pa u lodhur për të kuruar produktet më të mira për
+          klientët tanë. Me një përzierje inovacioni dhe ekspertize, ne
+          sigurojmë që çdo produkt të plotësojë standardet më të larta të
+          cilësisë.
+        </p>
+      </div>
+      <div class="team-content">
+        <img src="/img/team-right.jpg" alt="Ekipi në të djathtë" />
+        <p>
+          Kënaqësia e klientit është në zemrën e gjithçkaje që bëjmë. Ne
+          përpiqemi vazhdimisht të përmirësojmë shërbimet tona dhe të ofrojmë
+          një përvojë blerjeje pa probleme.
+        </p>
+      </div>
+    </section>
 
     <footer>
       <div class="footer-svg-container">
@@ -227,9 +437,7 @@
           <polygon points="100,10 40,190 190,190" fill="#fff" />
         </svg>
       </div>
-      <p>
-        &copy; 2024 Beauty Shop
-      </p>
+      <p>&copy; 2024 Beauty Shop</p>
     </footer>
 
     <button class="scroll-top-btn">↑</button>
