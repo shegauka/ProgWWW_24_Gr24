@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Produktet</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: rgba(255, 255, 255, 0.6);
+        background-image: url(/img/soft-gradient-1.jpg),
+          url(/img/soft-gradient-2.avif);
+        background-position: right bottom, left top;
+        background-repeat: no-repeat, repeat;
+        background-blend-mode: color-burn;
+      }
+      .products-title {
+        text-transform: capitalize;
+        color: #ff6699;
+        text-shadow: 2px 2px #f3aac3;
+        margin-top: 24px;
+      }
+      .product-container {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 20px;
+        gap: 20px;
+        justify-content: center;
+      }
+      .product-card {
+        background-image: radial-gradient(#f2f9ff, #fff5d7, #ffcce1);
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        width: 300px;
+        padding: 15px;
+        text-align: center;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+      }
+      .product-card img {
+        max-width: 100%;
+        border-radius: 8px;
+      }
+      .product-card h3 {
+        color: #ff6699;
+        font-size: 1.2rem;
+      }
+      .product-card p {
+        font-size: 0.9rem;
+        color: #666;
+      }
+      .sort-buttons {
+        text-align: center;
+        margin: 20px;
+      }
+      .sort-buttons button {
+        background-color: #ff6699;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        margin: 5px;
+        cursor: pointer;
+      }
+      .sort-buttons button:hover {
+        background-color: #e60073;
+      }
+    </style>
+    <link rel="stylesheet" href="headerandfooter.css" />
+  </head>
+  <body>
+    <header>
+      <canvas id="headerCanvas"></canvas>
+      <nav class="nav-container">
+        <h1><a class="header-link" href="/index.html">Beauty Shop</a></h1>
+        <ul>
+          <li><a href="/contact-us.html">Kontakti</a></li>
+          <li><a href="/about-us.html">Rreth nesh</a></li>
+        </ul>
+        <a class="header-link" href="/sign-up.html"
+          ><button id="signupBtn">
+            <span class="signup-icon">&#128100;</span> Llogaria
+          </button></a
+        >
+      </nav>
+    </header>
+    <h1 class="products-title" align="center">Te gjitha produktet</h1>
+    <div class="sort-buttons">
+      <button onclick="sortProducts('price')">
+        <i>Filtro sipas cmimit</i>
+      </button>
+      <button onclick="sortProducts('sales')">
+        <i>Filtro nga me te blerat</i>
+      </button>
+    </div>
+    <div class="product-container" id="productContainer"></div>
+
+    <script>
+      const products = [
+        {
+          name: "Gloss Bomb Heat Universal Lip Luminizer + Plumper",
+          price: 18.95,
+          image: "Produkti-1-M",
+          category: "Makeup",
+          description: "Shkëlqyes buzësh hibrid dhe volumizues...",
+          sales: 300,
+        },
+        {
+          name: "Soft Pinch Liquid Blush",
+          price: 16.5,
+          image: "Produkti-2-M",
+          category: "Makeup",
+          description: "Një blush i lëngshëm, i lehtë...",
+          sales: 350,
+        },
+        {
+          name: "Peptide Lip Tint",
+          price: 13.75,
+          image: "Produkti-3-M",
+          category: "Makeup",
+          description: "Ngjyrë e lehtë, por e shtresueshme...",
+          sales: 250,
+        },
+        {
+          name: "Pocket Blush",
+          price: 11.5,
+          image: "Produkti-4-M",
+          category: "Makeup",
+          description: "Blushi ynë kremoz, i përshtatshëm për në lëvizje...",
+          sales: 240,
+        },
+        {
+          name: "Barrier Butter",
+          price: 25.0,
+          image: "Produkti-1-S",
+          category: "Skincare",
+          description:
+            "Një balsam intensiv hidratues për një lagështi të thellë...",
+          sales: 100,
+        },
+        {
+          name: "Hydra Vizor Invisible Moisturizer",
+          price: 27.95,
+          image: "Produkti-2-S",
+          category: "Skincare",
+          description: "Hidratues i padukshëm me SPF 30...",
+          sales: 100,
+        },
+        {
+          name: "Instant Reset Brightening Overnight Gel-Cream",
+          price: 30.0,
+          image: "Produkti-3-S",
+          category: "Skincare",
+          description: "Hidratuesi i rimbushshëm ofron pore të lëmuara...",
+          sales: 120,
+        },
+        {
+          name: "Flash Nap Instant Revival Eye Gel-Cream",
+          price: 25.0,
+          image: "Produkti-4-S",
+          category: "Skincare",
+          description: "Krem për sytë që ndriçon dhe zgjidh sytë e lodhur...",
+          sales: 130,
+        },
+        {
+          name: "Find Comfort Gentle Exfoliating Body Wash",
+          price: 24.0,
+          image: "Produkti-1-B",
+          category: "Bodycare",
+          description:
+            "Një xhel dushi rigjallërues për përdorim të përditshëm...",
+          sales: 70,
+        },
+        {
+          name: "Xhel dushi me vanilje",
+          price: 7.5,
+          image: "Produkti-2-B",
+          category: "Bodycare",
+          description: "Xhel dushi pa sulfate dhe pa ngjyrues...",
+          sales: 400,
+        },
+        {
+          name: "Krem duarsh Mango",
+          price: 3.5,
+          image: "Produkti-3-B",
+          category: "Bodycare",
+          description: "Kënaqësia e një kremi hidratues duarsh...",
+          sales: 500,
+        },
+        {
+          name: "Qumësht trupi me orkide vanilje",
+          price: 11.5,
+          image: "Produkti-4-B",
+          category: "Bodycare",
+          description: "Lëkurë e hidratuar dhe me aromë të veçantë...",
+          sales: 300,
+        },
+      ];
+
+      function renderProducts(productList) {
+        productContainer.innerHTML = productList
+          .map(
+            (product, index) => `
+    <div class="product-card" data-id="${index}" onclick="goToProduct(${index})">
+      <img width="16px" height="16px" src="${product.image}.jpg" alt="${product.name}">
+      <b>${product.name}</b>
+      <p>${product.description}</p>
+      <p><strong>Cmimi:</strong><u>${product.price}€</u></p>
+    </div>
+  `
+          )
+          .join("");
+      }
+
+      function goToProduct(productId) {
+        const product = products[productId];
+        localStorage.setItem("selectedProduct", JSON.stringify(product));
+        window.open("product-page.html", "_blank");
+      }
+
+      renderProducts(products);
+    </script>
+    <script src="canvas.js"></script>
+  </body>
+</html>
